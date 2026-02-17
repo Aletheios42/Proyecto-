@@ -2,100 +2,325 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Clase de Informática</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase de Informática - Taller Práctico</title>
     <style>
+        /* ESTILOS GENERALES (ACCESIBILIDAD) */
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f0f0f0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #f4f4f9;
             color: #333;
             margin: 0;
             padding: 20px;
-            font-size: 22px; /* Letra grande para todos */
+            font-size: 20px; /* Letra grande base */
+            line-height: 1.6;
         }
-        h1 {
-            text-align: center;
-            color: #0056b3;
-            font-size: 2.5em;
-        }
+
+        h1, h2 { color: #0056b3; }
+        
+        h1 { text-align: center; font-size: 2.5em; margin-bottom: 10px; }
+        .subtitulo { text-align: center; color: #666; margin-bottom: 40px; }
+
+        /* CONTENEDOR PRINCIPAL */
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             background: white;
             padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
-        .seccion {
+
+        /* MENÚ DE NAVEGACIÓN */
+        .menu-navegacion {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
             margin-bottom: 40px;
-            border-bottom: 2px solid #ddd;
             padding-bottom: 20px;
+            border-bottom: 2px solid #eee;
         }
-        .comando {
-            background-color: #e8f0fe;
-            border: 2px solid #0056b3;
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 10px;
+        .menu-btn {
+            background-color: #e2e6ea;
+            color: #333;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 20px;
             font-weight: bold;
-            font-family: monospace; /* Para que parezca código */
-            font-size: 1.2em;
+            border: 1px solid #ccc;
         }
-        .explicacion {
+        .menu-btn:hover { background-color: #0056b3; color: white; }
+
+        /* SECCIONES */
+        section {
+            margin-bottom: 60px; /* Espacio entre temas */
+            padding-top: 20px;
+            border-top: 5px solid #0056b3; /* Línea azul arriba de cada tema */
+            scroll-margin-top: 20px;
+        }
+
+        /* TABLAS DE ATAJOS */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
             font-size: 0.9em;
-            color: #555;
-            margin-bottom: 5px;
         }
-        .boton-enlace {
-            display: block;
+        th, td {
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: left;
+        }
+        th { background-color: #0056b3; color: white; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        
+        .tecla {
+            background-color: #eee;
+            border: 1px solid #999;
+            border-radius: 5px;
+            padding: 2px 8px;
+            font-family: monospace;
+            font-weight: bold;
+            box-shadow: 1px 1px 0 #999;
+        }
+
+        /* CAJAS DE EJERCICIO */
+        .ejercicio-box {
+            background-color: #fff3cd;
+            border-left: 6px solid #ffc107;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        .ejercicio-titulo { font-weight: bold; color: #856404; display: block; margin-bottom: 10px; }
+
+        /* AREA DE PRÁCTICA (TEXTAREAS) */
+        textarea {
+            width: 100%;
+            height: 150px;
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 18px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* BOTONES GRANDES */
+        .btn-grande {
+            display: inline-block;
             background-color: #28a745;
             color: white;
-            text-align: center;
-            padding: 20px;
+            font-size: 1.2em;
+            padding: 15px 30px;
             text-decoration: none;
             border-radius: 10px;
             margin-top: 10px;
             font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-        .boton-enlace:hover {
-            background-color: #218838;
-            transform: scale(1.02); /* Efecto visual al pasar el ratón */
+        .btn-grande:hover { background-color: #218838; transform: translateY(-2px); }
+
+        /* PIE DE PÁGINA */
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #777;
+            font-size: 0.8em;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>🎓 Clase de Hoy</h1>
-    <p style="text-align: center;">Bienvenidos. Aquí tenéis todos los trucos que hemos visto.</p>
+    <h1>🎓 Taller de Informática</h1>
+    <p class="subtitulo">Guía paso a paso y ejercicios prácticos</p>
 
-    <div class="seccion">
-        <h2>⌨️ Atajos de Teclado</h2>
-        
-        <p class="explicacion">Para copiar algo:</p>
-        <div class="comando">CTRL + C</div>
-
-        <p class="explicacion">Para pegar algo:</p>
-        <div class="comando">CTRL + V</div>
-
-        <p class="explicacion">Para deshacer un error:</p>
-        <div class="comando">CTRL + Z</div>
+    <div class="menu-navegacion">
+        <a href="#mecanografia" class="menu-btn">1. Mecanografía</a>
+        <a href="#navegador" class="menu-btn">2. Navegador</a>
+        <a href="#escritura" class="menu-btn">3. Escritura y Voz</a>
+        <a href="#ventanas" class="menu-btn">4. Ventanas</a>
+        <a href="#dorks" class="menu-btn">5. Trucos de Búsqueda</a>
     </div>
 
-    <div class="seccion">
-        <h2>🔍 Trucos de Búsqueda</h2>
+    <section id="mecanografia">
+        <h2>1. Calentamiento: Mecanografía</h2>
+        <p>Antes de empezar, vamos a soltar los dedos y practicar la ubicación de las letras.</p>
         
-        <p class="explicacion">Buscar solo archivos PDF (Libros/Manuales):</p>
-        <div class="comando">filetype:pdf</div>
-        
-        <p class="explicacion">Buscar solo en webs oficiales:</p>
-        <div class="comando">site:gob.es</div>
-    </div>
+        <div class="ejercicio-box">
+            <span class="ejercicio-titulo">🏋️ Ejercicio 1:</span>
+            <p>Entre en la siguiente página y practique durante 15 minutos. No se preocupe por la velocidad, sino por no equivocarse.</p>
+            <center>
+                <a href="https://www.artypist.com/es/" target="_blank" class="btn-grande">Ir a Artypist (Practicar)</a>
+            </center>
+        </div>
+    </section>
 
-    <div class="seccion">
-        <h2>🔗 Webs para practicar</h2>
-        <a href="https://palette.fm" target="_blank" class="boton-enlace">🎨 Colorear Fotos (Palette.fm)</a>
-        <a href="https://www.google.com/maps" target="_blank" class="boton-enlace">🌍 Google Maps</a>
-    </div>
+    <section id="navegador">
+        <h2>2. Atajos del Navegador (Internet)</h2>
+        <p>Para moverse por Internet sin usar tanto el ratón.</p>
+
+        <table>
+            <tr>
+                <th>Acción</th>
+                <th>Atajo de Teclado</th>
+            </tr>
+            <tr>
+                <td>Nueva Pestaña</td>
+                <td><span class="tecla">Ctrl</span> + <span class="tecla">T</span></td>
+            </tr>
+            <tr>
+                <td>Cerrar Pestaña actual</td>
+                <td><span class="tecla">Ctrl</span> + <span class="tecla">W</span></td>
+            </tr>
+            <tr>
+                <td>Hacer la letra más grande (Zoom)</td>
+                <td><span class="tecla">Ctrl</span> + <span class="tecla">+</span></td>
+            </tr>
+            <tr>
+                <td>Ir a la barra de escribir dirección</td>
+                <td><span class="tecla">Ctrl</span> + <span class="tecla">L</span></td>
+            </tr>
+        </table>
+
+        <div class="ejercicio-box">
+            <span class="ejercicio-titulo">🏋️ Ejercicio 2:</span>
+            <ol>
+                <li>Pulse <b>Ctrl + T</b> para abrir una pestaña nueva.</li>
+                <li>En esa pestaña nueva, pulse <b>Ctrl + L</b> y escriba <i>elpais.com</i>.</li>
+                <li>Cuando cargue, pulse <b>Ctrl + "+"</b> tres veces para agrandar la letra.</li>
+                <li>Cierre esa pestaña con <b>Ctrl + W</b> para volver aquí.</li>
+            </ol>
+        </div>
+    </section>
+
+    <section id="escritura">
+        <h2>3. Escritura, Copiar, Pegar y Dictado</h2>
+        <p>Los trucos para escribir rápido y sin cansarse.</p>
+
+        <table>
+            <tr>
+                <th>Acción</th>
+                <th>Atajo</th>
+                <th>Explicación</th>
+            </tr>
+            <tr>
+                <td>Deshacer</td>
+                <td><span class="tecla">Ctrl</span> + <span class="tecla">Z</span></td>
+                <td>El salvavidas. Borra el último error.</td>
+            </tr>
+            <tr>
+                <td>Copiar</td>
+                <td><span class="tecla">Ctrl</span> + <span class="tecla">C</span></td>
+                <td>Hace una fotocopia de lo seleccionado.</td>
+            </tr>
+            <tr>
+                <td>Pegar</td>
+                <td><span class="tecla">Ctrl</span> + <span class="tecla">V</span></td>
+                <td>Pone lo que copió donde esté el cursor.</td>
+            </tr>
+            <tr>
+                <td>Cortar</td>
+                <td><span class="tecla">Ctrl</span> + <span class="tecla">X</span></td>
+                <td>Mueve algo de un sitio a otro.</td>
+            </tr>
+            <tr>
+                <td><b>Dictado por Voz</b></td>
+                <td><span class="tecla">Win ⊞</span> + <span class="tecla">H</span></td>
+                <td>Activa el micrófono para hablar.</td>
+            </tr>
+        </table>
+
+        <div class="ejercicio-box">
+            <span class="ejercicio-titulo">🏋️ Ejercicio 3: Área de Práctica</span>
+            <p>Use el cuadro de abajo para probar el <b>Dictado por Voz (Win + H)</b>. Luego, intente copiar el texto y pegarlo dos veces.</p>
+            <textarea placeholder="Haga clic aquí, pulse Win + H y empiece a hablar..."></textarea>
+        </div>
+    </section>
+
+    <section id="ventanas">
+        <h2>4. Control de Ventanas</h2>
+        <p>Cómo organizar la pantalla cuando tenemos muchas cosas abiertas.</p>
+
+        <table>
+            <tr>
+                <th>Acción</th>
+                <th>Atajo</th>
+            </tr>
+            <tr>
+                <td>Mostrar Escritorio (Minimizar todo)</td>
+                <td><span class="tecla">Win ⊞</span> + <span class="tecla">D</span></td>
+            </tr>
+            <tr>
+                <td>Cambiar de ventana</td>
+                <td><span class="tecla">Alt</span> + <span class="tecla">Tab ↹</span></td>
+            </tr>
+            <tr>
+                <td>Pantalla Dividida (Izquierda/Derecha)</td>
+                <td><span class="tecla">Win ⊞</span> + <span class="tecla">⬅</span> ó <span class="tecla">➡</span></td>
+            </tr>
+        </table>
+
+        <div class="ejercicio-box">
+            <span class="ejercicio-titulo">🏋️ Ejercicio 4:</span>
+            <ol>
+                <li>Abra el Bloc de Notas.</li>
+                <li>Pulse <b>Win + Izquierda</b> para poner esta web a un lado.</li>
+                <li>Elija el Bloc de Notas para el otro lado.</li>
+                <li>Intente copiar texto de aquí al Bloc de Notas.</li>
+            </ol>
+        </div>
+    </section>
+
+    <section id="dorks">
+        <h2>5. Trucos de Búsqueda (Google Avanzado)</h2>
+        <p>Cómo encontrar exactamente lo que buscamos, sin publicidad ni engaños.</p>
+
+        <table>
+            <tr>
+                <th>Comando</th>
+                <th>Para qué sirve</th>
+                <th>Ejemplo</th>
+            </tr>
+            <tr>
+                <td><span class="tecla">filetype:pdf</span></td>
+                <td>Busca solo documentos y libros (PDF).</td>
+                <td><i>manual lavadora samsung filetype:pdf</i></td>
+            </tr>
+            <tr>
+                <td><span class="tecla">site:</span></td>
+                <td>Busca solo dentro de una web específica.</td>
+                <td><i>becas site:gob.es</i></td>
+            </tr>
+            <tr>
+                <td><span class="tecla">" "</span> (comillas)</td>
+                <td>Busca la frase exacta.</td>
+                <td><i>"en un lugar de la mancha"</i></td>
+            </tr>
+        </table>
+
+        <div class="ejercicio-box">
+            <span class="ejercicio-titulo">🏋️ Ejercicio Final: El Investigador</span>
+            <p>Abra una nueva pestaña (Ctrl+T) e intente encontrar:</p>
+            <ul>
+                <li>El manual de instrucciones de su televisión (usando <b>filetype:pdf</b>).</li>
+                <li>Una receta de tortilla buscando SOLO en la web de Hola (<i>tortilla site:hola.com</i>).</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="bonus">
+        <h2>✨ Bonus: Magia con Fotos Antiguas</h2>
+        <p>Si hemos terminado pronto, vamos a dar color a nuestros recuerdos.</p>
+        <div style="text-align: center;">
+            <a href="https://palette.fm/" target="_blank" class="btn-grande" style="background-color: #6f42c1;">Ir a Palette.fm (Colorear Fotos)</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>Clase de Informática - Material de Apoyo</p>
+    </footer>
 
 </div>
 
