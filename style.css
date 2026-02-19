@@ -1,0 +1,160 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+
+body {
+    font-family: "Courier New", Courier, monospace;
+}
+
+#app {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    grid-template-rows: 1fr 300px;
+    height: 100vh;
+}
+
+#panel-lateral {
+    grid-row: 1 / 3;
+    background-color: #0d0d0d;
+    overflow-y: auto;
+    color: white;
+}
+
+#panel-editor {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: #1a1a1a;
+    color: white;
+    height: 100%;
+}
+
+#panel-terminal {
+    background-color: #000000;
+    color: #00ff00; 
+    font-family: monospace;
+    padding: 10px;
+}
+
+#instrucciones-contenedor {
+    background-color: #252525;
+    padding: 20px;
+    border-bottom: 2px solid #333;
+    max-height: 40%;
+    overflow-y: auto;
+}
+
+#ejercicio-titulo {
+    color: #50fa7b;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+#ejercicio-instrucciones {
+    color: #f8f8f2;
+    line-height: 1.4;
+    font-family: sans-serif;
+}
+
+#boton-verificar {
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
+    z-index: 100;
+    padding: 12px 24px;
+    background-color: #50fa7b;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+#boton-verificar:hover {
+    background-color: #40c462;
+    transform: translateY(-2px);
+}
+
+#panel-lateral h3 {
+    padding: 15px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: #666;
+}
+
+.archivo-item {
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #ccc;
+    transition: background 0.2s;
+    border-left: 3px solid transparent;
+}
+
+.archivo-item:hover {
+    background-color: #2a2a2a;
+    color: white;
+}
+
+.archivo-item.activo {
+    background-color: #37373d;
+    color: #50fa7b;
+    border-left: 3px solid #50fa7b;
+}
+
+.CodeMirror {
+    flex-grow: 1; /* Esto hace que el editor ocupe todo el espacio sobrante del panel */
+    height: auto;
+    font-size: 14px;
+}
+
+/* Estilos para el Modal */
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.85); /* Fondo oscuro */
+}
+
+.modal-contenido {
+    background-color: #282a36;
+    margin: 5% auto;
+    padding: 30px;
+    width: 70%;
+    max-height: 85vh;
+    overflow-y: auto;
+    color: #f8f8f2;
+    border-radius: 10px;
+    border: 1px solid #444;
+    position: relative;
+    font-family: sans-serif;
+}
+
+.cerrar-modal {
+    position: sticky;
+    top: 0;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #ff5555;
+}
+
+/* Estilo especial para el botón de chuleta en el lateral */
+.chuleta-btn {
+    color: #f1fa8c !important; /* Color amarillo suave */
+    border-bottom: 1px solid #333;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* Estilos para el Markdown dentro del modal */
+#contenido-markdown h1, #contenido-markdown h2 { color: #50fa7b; margin-top: 20px; }
+#contenido-markdown pre { background: #111; padding: 15px; border-radius: 5px; margin: 10px 0; overflow-x: auto; }
+#contenido-markdown code { font-family: monospace; color: #f1fa8c; }
