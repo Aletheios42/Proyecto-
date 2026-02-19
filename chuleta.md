@@ -117,8 +117,3 @@ class Rectangulo:
         return self.ancho * self.alto
 
 ```
-
-```
-
----
-**¿Te gustaría que te ayude a crear un botón en el `index.html` que abra un "Modal" (una ventana flotante) para mostrar este Markdown directamente en tu aplicación?**

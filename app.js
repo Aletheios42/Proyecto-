@@ -28,9 +28,9 @@ async function main() {
 }
 
 function renderizarListaEjercicios() {
-    const contenedor = document.getElementById("panel-lateral");
-    contenedor.innerHTML = '<h3> Archivos </h3>';
-    
+   const contenedor = document.getElementById("lista-ejercicios");
+    contenedor.innerHTML = ''; 
+
     window.EJERCICIOS.forEach((ejer, index) => {
         const boton = document.createElement("div");
         boton.className = "archivo-item";
