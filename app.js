@@ -97,7 +97,7 @@ botonVerificar.addEventListener('click', () => {
 });
 
 async function mostrarChuleta() {
-    const respuesta = await fetch('chuleta.md'); // Lee tu archivo
+    const respuesta = await fetch('chuleta.md');
     const texto = await respuesta.text();
     document.getElementById('contenido-markdown').innerHTML = marked.parse(texto);
     document.getElementById('modal-chuleta').style.display = 'block';
