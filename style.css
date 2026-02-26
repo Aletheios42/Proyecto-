@@ -22,6 +22,32 @@ body {
     color: white;
 }
 
+.bloque-header {
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-top: 1px solid #1e1e1e;
+  transition: background 0.2s, color 0.2s;
+  user-select: none;
+}
+
+.bloque-header:hover {
+  background-color: #1a1a1a;
+  color: #ccc;
+}
+
+.bloque-header.abierto {
+  color: #f1fa8c;
+}
+
+.bloque-arrow {
+  font-size: 0.7rem;
+  margin-right: 4px;
+}
+
 #panel-editor {
     display: flex;
     flex-direction: column;

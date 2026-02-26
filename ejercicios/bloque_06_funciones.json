@@ -1,0 +1,132 @@
+[
+  {
+    "id": 601,
+    "titulo": "01_funcion_simple.py",
+    "bloque": "06_funciones",
+    "orden": 1,
+    "instrucciones": "# Función simple\nDefine `saludar(nombre)` que retorne `\"Hola, {nombre}!\"`.\nDefine `cuadrado(n)` que retorne n².",
+    "boilerplate": "def saludar(___):\n    ___\n\ndef cuadrado(___):\n    ___",
+    "testCode": "assert saludar('Ana') == 'Hola, Ana!', \"❌ Revisa el formato del string\"\nassert cuadrado(5) == 25, \"❌ Retorna n**2\"\nassert cuadrado(0) == 0, \"❌ Caso borde: 0²=0\"\nprint('✅ ¡Correcto! Funciones dominadas')",
+    "pista": "```python\ndef saludar(nombre):\n    return f\"Hola, {nombre}!\"\n```\nUsa `return` para devolver el valor."
+  },
+  {
+    "id": 602,
+    "titulo": "02_multiples_parametros.py",
+    "bloque": "06_funciones",
+    "orden": 2,
+    "instrucciones": "# Múltiples parámetros\nDefine `area_rectangulo(base, altura)` que retorne el área.\nDefine `es_divisible(n, divisor)` que retorne `True` si `n` es divisible por `divisor`.",
+    "boilerplate": "def area_rectangulo(___, ___):\n    ___\n\ndef es_divisible(___, ___):\n    ___",
+    "testCode": "assert area_rectangulo(4, 5) == 20, \"❌ area = base * altura\"\nassert es_divisible(10, 2) == True, \"❌ 10 % 2 == 0\"\nassert es_divisible(7, 3) == False, \"❌ 7 % 3 != 0\"\nprint('✅ ¡Correcto! Múltiples parámetros dominados')",
+    "pista": "`es_divisible` puede retornar directamente: `return n % divisor == 0`"
+  },
+  {
+    "id": 603,
+    "titulo": "03_valor_defecto.py",
+    "bloque": "06_funciones",
+    "orden": 3,
+    "instrucciones": "# Valor por defecto\nDefine `presentar(nombre, edad, ciudad=\"Desconocida\")` que retorne:\n`\"Me llamo {nombre}, tengo {edad} años y soy de {ciudad}\"`",
+    "boilerplate": "def presentar(___):\n    ___",
+    "testCode": "assert presentar('Luis', 30) == 'Me llamo Luis, tengo 30 años y soy de Desconocida', \"❌ Revisa el valor por defecto\"\nassert presentar('Ana', 25, 'Madrid') == 'Me llamo Ana, tengo 25 años y soy de Madrid', \"❌ Revisa el formato\"\nprint('✅ ¡Correcto! Argumentos dominados')",
+    "pista": "Los parámetros con valor por defecto van al final: `def f(a, b=\"default\")`."
+  },
+  {
+    "id": 604,
+    "titulo": "04_retorno_multiple.py",
+    "bloque": "06_funciones",
+    "orden": 4,
+    "instrucciones": "# Retorno múltiple\nDefine `estadisticas(lista)` que retorne una tupla `(minimo, maximo, suma)`.",
+    "boilerplate": "def estadisticas(lista):\n    ___",
+    "testCode": "mn, mx, s = estadisticas([3,1,4,1,5,9])\nassert mn == 1, \"❌ mínimo debe ser 1\"\nassert mx == 9, \"❌ máximo debe ser 9\"\nassert s == 23, \"❌ suma debe ser 23\"\nprint('✅ ¡Correcto! Retorno múltiple dominado')",
+    "pista": "`return min(lista), max(lista), sum(lista)` retorna tres valores como tupla."
+  },
+  {
+    "id": 605,
+    "titulo": "05_args.py",
+    "bloque": "06_funciones",
+    "orden": 5,
+    "instrucciones": "# *args\nDefine `suma(*nums)` que acepte cualquier cantidad de números y retorne su suma.",
+    "boilerplate": "def suma(*nums):\n    ___",
+    "testCode": "assert suma(1,2,3) == 6, \"❌ suma(1,2,3) = 6\"\nassert suma(10,20) == 30, \"❌ suma(10,20) = 30\"\nassert suma() == 0, \"❌ suma() = 0\"\nprint('✅ ¡Correcto! *args dominado')",
+    "pista": "`*nums` recibe todos los argumentos como tupla. Usa `sum(nums)` o un bucle."
+  },
+  {
+    "id": 606,
+    "titulo": "06_kwargs.py",
+    "bloque": "06_funciones",
+    "orden": 6,
+    "instrucciones": "# **kwargs\nDefine `describir(**datos)` que retorne un string con los pares `clave=valor` separados por comas.\nEj: `describir(nombre=\"Ana\", edad=25)` → `\"nombre=Ana, edad=25\"`",
+    "boilerplate": "def describir(**datos):\n    ___",
+    "testCode": "resultado = describir(nombre='Ana', edad=25)\nassert 'nombre=Ana' in resultado, \"❌ Formato: 'clave=valor'\"\nassert 'edad=25' in resultado, \"❌ Formato: 'clave=valor'\"\nprint('✅ ¡Correcto! **kwargs dominado')",
+    "pista": "```python\ndef describir(**datos):\n    return ', '.join(f\"{k}={v}\" for k, v in datos.items())\n```"
+  },
+  {
+    "id": 607,
+    "titulo": "07_scope.py",
+    "bloque": "06_funciones",
+    "orden": 7,
+    "instrucciones": "# Scope\nDada `x = 10` (global), define `modificar()` que use `global x` para cambiarla a `99`.\nLlama a `modificar()` y comprueba el valor final.",
+    "boilerplate": "x = 10\n\ndef modificar():\n    ___\n\nmodificar()",
+    "testCode": "assert x == 99, \"❌ Usa 'global x' dentro de la función\"\nprint('✅ ¡Correcto! Scope dominado')",
+    "pista": "```python\ndef modificar():\n    global x\n    x = 99\n```\nSin `global`, crearía una `x` local nueva."
+  },
+  {
+    "id": 608,
+    "titulo": "08_lambda.py",
+    "bloque": "06_funciones",
+    "orden": 8,
+    "instrucciones": "# Lambda\nCrea `doble` como lambda que multiplique por 2.\nOrdena `pares = [(3,'c'),(1,'a'),(2,'b')]` por el primer elemento usando lambda en `sorted()`.",
+    "boilerplate": "doble = lambda ___: ___\npares = [(3,'c'),(1,'a'),(2,'b')]\nordenados = sorted(pares, key=lambda ___: ___)",
+    "testCode": "assert doble(5) == 10, \"❌ lambda x: x * 2\"\nassert ordenados == [(1,'a'),(2,'b'),(3,'c')], \"❌ Ordena por el primer elemento\"\nprint('✅ ¡Correcto! Lambda dominado')",
+    "pista": "`lambda x: x * 2` define función anónima. Para ordenar: `key=lambda p: p[0]`."
+  },
+  {
+    "id": 609,
+    "titulo": "09_recursion.py",
+    "bloque": "06_funciones",
+    "orden": 9,
+    "instrucciones": "# Recursión\nImplementa `factorial(n)` de forma recursiva.\n- Caso base: `factorial(0) = 1`\n- Caso recursivo: `factorial(n) = n * factorial(n-1)`",
+    "boilerplate": "def factorial(n):\n    if ___:\n        return ___\n    return ___",
+    "testCode": "assert factorial(0) == 1, \"❌ factorial(0) = 1\"\nassert factorial(5) == 120, \"❌ factorial(5) = 120\"\nassert factorial(10) == 3628800, \"❌ factorial(10) = 3628800\"\nprint('✅ ¡Correcto! Recursión dominada')",
+    "pista": "```python\ndef factorial(n):\n    if n == 0:\n        return 1\n    return n * factorial(n - 1)\n```"
+  },
+  {
+    "id": 610,
+    "titulo": "10_recursion_fibonacci.py",
+    "bloque": "06_funciones",
+    "orden": 10,
+    "instrucciones": "# Fibonacci recursivo\nImplementa `fib(n)` que retorne el n-ésimo número de Fibonacci.\n- `fib(0) = 0`, `fib(1) = 1`\n- `fib(n) = fib(n-1) + fib(n-2)`",
+    "boilerplate": "def fib(n):\n    ___",
+    "testCode": "assert fib(0) == 0, \"❌ fib(0) = 0\"\nassert fib(1) == 1, \"❌ fib(1) = 1\"\nassert fib(7) == 13, \"❌ fib(7) = 13\"\nassert fib(10) == 55, \"❌ fib(10) = 55\"\nprint('✅ ¡Correcto! Fibonacci dominado')",
+    "pista": "```python\ndef fib(n):\n    if n <= 1:\n        return n\n    return fib(n-1) + fib(n-2)\n```"
+  },
+  {
+    "id": 611,
+    "titulo": "11_docstrings.py",
+    "bloque": "06_funciones",
+    "orden": 11,
+    "instrucciones": "# Docstrings\nDefine `potencia(base, exp)` con un docstring que describa la función.\nAccede al docstring con `potencia.__doc__` y guárdalo en `doc`.",
+    "boilerplate": "def potencia(base, exp):\n    \"\"\"___\"\"\"\n    return base ** exp\n\ndoc = ___",
+    "testCode": "assert potencia(2,3) == 8, \"❌ 2**3 = 8\"\nassert isinstance(doc, str) and len(doc) > 0, \"❌ El docstring no puede estar vacío\"\nprint('✅ ¡Correcto! Docstrings dominados')",
+    "pista": "`doc = potencia.__doc__` accede al docstring de la función."
+  },
+  {
+    "id": 612,
+    "titulo": "12_map_filter.py",
+    "bloque": "06_funciones",
+    "orden": 12,
+    "instrucciones": "# map() y filter()\nDada `nums = [1,2,3,4,5,6]`:\n- `cuadrados` = lista de cuadrados usando `map()`\n- `pares` = lista de pares usando `filter()`",
+    "boilerplate": "nums = [1,2,3,4,5,6]\ncuadrados = list(map(___, nums))\npares = list(filter(___, nums))",
+    "testCode": "assert cuadrados == [1,4,9,16,25,36], \"❌ map(lambda x: x**2, nums)\"\nassert pares == [2,4,6], \"❌ filter(lambda x: x%2==0, nums)\"\nprint('✅ ¡Correcto! map/filter dominados')",
+    "pista": "`map(lambda x: x**2, nums)` aplica la función a cada elemento. `filter(lambda x: x%2==0, nums)` filtra."
+  },
+  {
+    "id": 613,
+    "titulo": "13_funciones_orden_superior.py",
+    "bloque": "06_funciones",
+    "orden": 13,
+    "instrucciones": "# Funciones de orden superior\nDefine `aplicar(func, valor)` que aplique `func` a `valor` y retorne el resultado.\nPruébala con `lambda x: x * 3` y el valor `7`.",
+    "boilerplate": "def aplicar(func, valor):\n    ___\n\nresultado = aplicar(___, ___)",
+    "testCode": "assert aplicar(lambda x: x*3, 7) == 21, \"❌ aplicar debe llamar func(valor)\"\nassert resultado == 21, \"❌ 7 * 3 = 21\"\nprint('✅ ¡Correcto! Funciones de orden superior dominadas')",
+    "pista": "```python\ndef aplicar(func, valor):\n    return func(valor)\n```\nLas funciones son objetos en Python y pueden pasarse como argumentos."
+  }
+]
