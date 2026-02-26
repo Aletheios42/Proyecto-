@@ -13,7 +13,7 @@ async function main() {
         mode: "python"
     });
 
-    // 2. Cargar Pyodide (¡Esto faltaba en tu última versión!)
+    // 2. Cargar Pyodide
     terminal.innerHTML = "<p>⏳ Cargando Python...</p>";
     pyodide = await loadPyodide();
 
@@ -28,22 +28,22 @@ async function main() {
 }
 
 function renderizarListaEjercicios() {
-   const contenedor = document.getElementById("lista-ejercicios");
-    contenedor.innerHTML = ''; 
+    const contenedor = document.getElementById("lista-ejercicios");
+    contenedor.innerHTML = '';
 
     window.EJERCICIOS.forEach((ejer, index) => {
         const boton = document.createElement("div");
         boton.className = "archivo-item";
         if (index === ejercicioActualIndex) boton.classList.add("activo");
-        
+
         boton.innerText = `📄 ${ejer.titulo}`;
-        
+
         boton.onclick = () => {
             ejercicioActualIndex = index;
             cargarEjercicio(index);
             renderizarListaEjercicios();
         };
-        
+
         contenedor.appendChild(boton);
     });
 }
