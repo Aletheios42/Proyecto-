@@ -1,0 +1,82 @@
+[
+  {
+    "id": 301,
+    "titulo": "01_aritmeticos.py",
+    "bloque": "03_operadores",
+    "orden": 1,
+    "instrucciones": "# Operadores aritméticos\n- `suma` = 15 + 27\n- `division` = 10 / 4\n- `modulo` = 17 % 5\n- `potencia` = 2 ** 8",
+    "boilerplate": "suma = ___\ndivision = ___\nmodulo = ___\npotencia = ___",
+    "testCode": "assert suma == 42, \"❌ suma debe ser 42\"\nassert division == 2.5, \"❌ division debe ser 2.5\"\nassert modulo == 2, \"❌ modulo debe ser 2\"\nassert potencia == 256, \"❌ potencia debe ser 256\"\nprint('✅ ¡Correcto! Operadores aritméticos dominados')",
+    "pista": "`/` siempre devuelve float. `%` es el resto de la división. `**` es potencia."
+  },
+  {
+    "id": 302,
+    "titulo": "02_division_entera.py",
+    "bloque": "03_operadores",
+    "orden": 2,
+    "instrucciones": "# División entera\n- `cociente` = división entera de 17 entre 5 (usa `//`)\n- `resto` = resto de 17 entre 5 (usa `%`)\n- `verificacion` = comprueba que `cociente * 5 + resto == 17`",
+    "boilerplate": "cociente = ___\nresto = ___\nverificacion = ___",
+    "testCode": "assert cociente == 3, \"❌ 17 // 5 = 3\"\nassert resto == 2, \"❌ 17 % 5 = 2\"\nassert verificacion == True, \"❌ cociente * 5 + resto debe ser 17\"\nprint('✅ ¡Correcto! División entera dominada')",
+    "pista": "`//` descarta los decimales. `17 // 5 = 3` porque 5 cabe 3 veces en 17."
+  },
+  {
+    "id": 303,
+    "titulo": "03_potencia.py",
+    "bloque": "03_operadores",
+    "orden": 3,
+    "instrucciones": "# Potencia y raíz\n- `cuadrado` = 12 al cuadrado\n- `cubo` = 3 al cubo\n- `raiz` = raíz cúbica de 27 (27 elevado a 1/3)",
+    "boilerplate": "cuadrado = ___\ncubo = ___\nraiz = ___",
+    "testCode": "assert cuadrado == 144, \"❌ 12**2 = 144\"\nassert cubo == 27, \"❌ 3**3 = 27\"\nassert round(raiz, 5) == 3.0, \"❌ 27**(1/3) = 3.0\"\nprint('✅ ¡Correcto! Potencias dominadas')",
+    "pista": "La raíz cúbica es elevar a `1/3`: `27 ** (1/3)`. Pon paréntesis en el exponente."
+  },
+  {
+    "id": 304,
+    "titulo": "04_precedencia.py",
+    "bloque": "03_operadores",
+    "orden": 4,
+    "instrucciones": "# Precedencia\n- `sin_parentesis` = `2 + 3 * 4`\n- `con_parentesis` = `(2 + 3) * 4`\n- `son_iguales` = si ambos resultados son iguales",
+    "boilerplate": "sin_parentesis = ___\ncon_parentesis = ___\nson_iguales = ___",
+    "testCode": "assert sin_parentesis == 14, \"❌ * tiene prioridad sobre +\"\nassert con_parentesis == 20, \"❌ paréntesis fuerzan la suma primero\"\nassert son_iguales == False, \"❌ son distintos\"\nprint('✅ ¡Correcto! Precedencia dominada')",
+    "pista": "Python sigue PEMDAS: primero `**`, luego `*` y `/`, luego `+` y `-`. Los paréntesis alteran el orden."
+  },
+  {
+    "id": 305,
+    "titulo": "05_comparacion.py",
+    "bloque": "03_operadores",
+    "orden": 5,
+    "instrucciones": "# Comparadores\n- `es_mayor` = ¿es 10 mayor que 5?\n- `es_igual` = ¿es `\"python\"` igual a `\"Python\"`?\n- `es_distinto` = ¿es 7 distinto de 7.0?",
+    "boilerplate": "es_mayor = ___\nes_igual = ___\nes_distinto = ___",
+    "testCode": "assert es_mayor == True, \"❌ 10 > 5 es True\"\nassert es_igual == False, \"❌ Cuidado con mayúsculas\"\nassert es_distinto == False, \"❌ 7 == 7.0 en Python\"\nprint('✅ ¡Correcto! Comparadores dominados')",
+    "pista": "Python distingue mayúsculas en strings. `7 == 7.0` es `True` porque compara valores, no tipos."
+  },
+  {
+    "id": 306,
+    "titulo": "06_logicos.py",
+    "bloque": "03_operadores",
+    "orden": 6,
+    "instrucciones": "# Operadores lógicos\n- `resultado1` = True AND False\n- `resultado2` = True OR False\n- `resultado3` = NOT True\n- `resultado4` = (5 > 3) AND (10 < 20)",
+    "boilerplate": "resultado1 = ___\nresultado2 = ___\nresultado3 = ___\nresultado4 = ___",
+    "testCode": "assert resultado1 == False, \"❌ True and False = False\"\nassert resultado2 == True, \"❌ True or False = True\"\nassert resultado3 == False, \"❌ not True = False\"\nassert resultado4 == True, \"❌ Ambas condiciones son verdaderas\"\nprint('✅ ¡Correcto! Lógica booleana dominada')",
+    "pista": "En Python se escribe `and`, `or`, `not` en minúsculas (no AND/OR/NOT)."
+  },
+  {
+    "id": 307,
+    "titulo": "07_asignacion_compuesta.py",
+    "bloque": "03_operadores",
+    "orden": 7,
+    "instrucciones": "# Asignación compuesta\nPartiendo de `x = 10`:\n- Aplica `x += 5`\n- Luego `x *= 2`\n- Luego `x -= 3`\n¿Cuánto vale `x` al final?",
+    "boilerplate": "x = 10\nx += 5\nx *= 2\nx -= 3\nresultado = x",
+    "testCode": "assert resultado == 27, \"❌ 10+5=15, 15*2=30, 30-3=27\"\nprint('✅ ¡Correcto! Asignación compuesta dominada')",
+    "pista": "`x += 5` es lo mismo que `x = x + 5`. Ejecuta las operaciones paso a paso."
+  },
+  {
+    "id": 308,
+    "titulo": "08_walrus.py",
+    "bloque": "03_operadores",
+    "orden": 8,
+    "instrucciones": "# Operador walrus `:=`\nUsa `:=` para asignar `len(\"Python\")` a `n` dentro de un `if`, e imprime `n` si es mayor que 3.",
+    "boilerplate": "texto = \"Python\"\nif (n := ___) > 3:\n    print(f\"Longitud: {n}\")",
+    "testCode": "assert n == 6, \"❌ len('Python') = 6\"\nprint('✅ ¡Correcto! Walrus operator dominado')",
+    "pista": "```python\nif (n := len(texto)) > 3:\n    print(f\"Longitud: {n}\")\n```\n`:=` asigna y evalúa en una sola expresión."
+  }
+]
