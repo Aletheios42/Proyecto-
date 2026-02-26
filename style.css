@@ -31,6 +31,29 @@ body {
     height: 100%;
 }
 
+#instrucciones-contenedor {
+    background-color: #252525;
+    padding: 20px;
+    border-bottom: 2px solid #333;
+    max-height: 40%;
+    overflow-y: auto;
+    position: relative;
+}
+
+#boton-pista {
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
+    z-index: 100;
+    padding: 12px 24px;
+    background-color: #50fa7b;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
 #panel-terminal {
     background-color: #000000;
     color: #00ff00; 
@@ -38,13 +61,6 @@ body {
     padding: 10px;
 }
 
-#instrucciones-contenedor {
-    background-color: #252525;
-    padding: 20px;
-    border-bottom: 2px solid #333;
-    max-height: 40%;
-    overflow-y: auto;
-}
 
 #ejercicio-titulo {
     color: #50fa7b;
