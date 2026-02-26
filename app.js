@@ -96,11 +96,18 @@ botonVerificar.addEventListener('click', () => {
     runCode(codigo, test);
 });
 
+document.addEventListener('keydown', (evento) => {
+  if (evento.key = 'Escape') {
+    document.getElementById("modal-chuleta").style.display = 'none';
+  }
+})
+
 async function mostrarChuleta() {
-    const respuesta = await fetch('chuleta.md');
+    const respuesta = await fetch('chuleta.md'); 
     const texto = await respuesta.text();
     document.getElementById('contenido-markdown').innerHTML = marked.parse(texto);
     document.getElementById('modal-chuleta').style.display = 'block';
+
 }
 
 // Evento para cerrar
