@@ -34,7 +34,7 @@
     "titulo": "04_for_lista.py",
     "bloque": "04_control_flujo",
     "orden": 4,
-    "instrucciones": "# for sobre lista\nDada `nombres = [\"Ana\", \"Luis\", \"Eva\"]`, usa `for` para enseñar por pantalla cada nombre en mayúsculas.",
+    "instrucciones": "# for sobre lista\nDada `nombres = [\"Ana\", \"Luis\", \"Eva\"]`, usa `for` para construir `salidos` con cada nombre en mayúsculas.",
     "boilerplate": "nombres = [\"Ana\", \"Luis\", \"Eva\"]\nsaludos = []\nfor ___:\n    saludos.append(___)",
     "testCode": "assert saludos == ['ANA', 'LUIS', 'EVA'], \"❌ Usa .upper() en cada nombre\"\nprint('✅ ¡Correcto! for sobre lista dominado')",
     "pista": "```python\nfor nombre in nombres:\n    saludos.append(nombre.upper())\n```"
