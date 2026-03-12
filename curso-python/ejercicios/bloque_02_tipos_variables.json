@@ -1,0 +1,82 @@
+[
+  {
+    "id": 201,
+    "titulo": "01_variables.py",
+    "bloque": "02_tipos_variables",
+    "orden": 1,
+    "instrucciones": "# Variables en Python\nAsigna los siguientes valores:\n- `nombre` = tu nombre (string)\n- `edad` = tu edad (entero)\n- `altura` = tu altura en metros (float)",
+    "boilerplate": "# Completa las variables\nnombre = ___\nedad = ___\naltura = ___",
+    "testCode": "assert isinstance(nombre, str), \"❌ 'nombre' debe ser un string\"\nassert isinstance(edad, int), \"❌ 'edad' debe ser un entero\"\nassert isinstance(altura, float), \"❌ 'altura' debe ser un float\"\nprint('✅ ¡Correcto! Variables asignadas correctamente')",
+    "pista": "Strings entre comillas: `nombre = \"Ana\"`. Enteros sin comillas: `edad = 25`. Floats con punto decimal: `altura = 1.70`"
+  },
+  {
+    "id": 202,
+    "titulo": "02_type.py",
+    "bloque": "02_tipos_variables",
+    "orden": 2,
+    "instrucciones": "# type()\nUsa `type()` para guardar el tipo de cada valor:\n- `tipo_texto` = tipo de `\"hola\"`\n- `tipo_numero` = tipo de `42`\n- `tipo_decimal` = tipo de `3.14`",
+    "boilerplate": "tipo_texto = ___\ntipo_numero = ___\ntipo_decimal = ___",
+    "testCode": "assert tipo_texto == str, \"❌ type('hola') es str\"\nassert tipo_numero == int, \"❌ type(42) es int\"\nassert tipo_decimal == float, \"❌ type(3.14) es float\"\nprint('✅ ¡Correcto! type() dominado')",
+    "pista": "Escribe `tipo_texto = type(\"hola\")`. La función `type()` devuelve el tipo del valor."
+  },
+  {
+    "id": 203,
+    "titulo": "03_reasignacion.py",
+    "bloque": "02_tipos_variables",
+    "orden": 3,
+    "instrucciones": "# Reasignación\n`x` empieza como entero `10`.\nReasígnala al string `\"diez\"`.\nGuarda el tipo final en `tipo_final`.",
+    "boilerplate": "x = 10\n# Reasigna x\n___\ntipo_final = type(x)",
+    "testCode": "assert x == 'diez', \"❌ x debe ser el string 'diez'\"\nassert tipo_final == str, \"❌ tipo_final debe ser str\"\nprint('✅ ¡Correcto! Python es dinámicamente tipado')",
+    "pista": "Simplemente escribe `x = \"diez\"` después de la primera asignación. Python permite cambiar el tipo."
+  },
+  {
+    "id": 204,
+    "titulo": "04_none.py",
+    "bloque": "02_tipos_variables",
+    "orden": 4,
+    "instrucciones": "# None\nAsigna `None` a `vacio`.\nGuarda en `es_none` si `vacio` es exactamente `None` (usa `is`).",
+    "boilerplate": "vacio = ___\nes_none = ___",
+    "testCode": "assert vacio is None, \"❌ vacio debe ser None\"\nassert es_none == True, \"❌ usa 'vacio is None'\"\nprint('✅ ¡Correcto! None representa ausencia de valor')",
+    "pista": "```python\nvacio = None\nes_none = vacio is None  # True\n```"
+  },
+  {
+    "id": 205,
+    "titulo": "05_booleanos.py",
+    "bloque": "02_tipos_variables",
+    "orden": 5,
+    "instrucciones": "# Booleanos\n- `a` = `True and False`\n- `b` = `True or False`\n- `c` = `not True`\n- `d` = `not False`",
+    "boilerplate": "a = ___\nb = ___\nc = ___\nd = ___",
+    "testCode": "assert a == False, \"❌ True and False = False\"\nassert b == True, \"❌ True or False = True\"\nassert c == False, \"❌ not True = False\"\nassert d == True, \"❌ not False = True\"\nprint('✅ ¡Correcto! Booleanos dominados')",
+    "pista": "`and` es verdadero solo si ambos son True. `or` es verdadero si al menos uno es True. `not` invierte el valor."
+  },
+  {
+    "id": 206,
+    "titulo": "06_conversion_tipos.py",
+    "bloque": "02_tipos_variables",
+    "orden": 6,
+    "instrucciones": "# Conversión de tipos\n- `entero` = convierte `\"42\"` a int\n- `decimal` = convierte `3` a float\n- `booleano` = convierte `0` a bool",
+    "boilerplate": "entero = ___\ndecimal = ___\nbooleano = ___",
+    "testCode": "assert entero == 42 and isinstance(entero, int), \"❌ int('42') = 42\"\nassert decimal == 3.0 and isinstance(decimal, float), \"❌ float(3) = 3.0\"\nassert booleano == False and isinstance(booleano, bool), \"❌ bool(0) = False\"\nprint('✅ ¡Correcto! Conversión de tipos dominada')",
+    "pista": "Usa las funciones `int()`, `float()`, `bool()` para convertir entre tipos."
+  },
+  {
+    "id": 207,
+    "titulo": "07_string_multilinea.py",
+    "bloque": "02_tipos_variables",
+    "orden": 7,
+    "instrucciones": "# String multilínea\nCrea `poema` con triple comillas que contenga exactamente dos líneas:\n`Línea uno`\n`Línea dos`",
+    "boilerplate": "poema = ___",
+    "testCode": "assert 'Línea uno' in poema, \"❌ Falta 'Línea uno'\"\nassert 'Línea dos' in poema, \"❌ Falta 'Línea dos'\"\nassert '\\n' in poema, \"❌ Debe tener salto de línea\"\nprint('✅ ¡Correcto! Strings multilínea dominados')",
+    "pista": "```python\npoema = \"\"\"Línea uno\nLínea dos\"\"\"\n```"
+  },
+  {
+    "id": 208,
+    "titulo": "08_fstrings.py",
+    "bloque": "02_tipos_variables",
+    "orden": 8,
+    "instrucciones": "# f-strings\nDadas `nombre = \"Ana\"` y `edad = 25`, crea `mensaje` usando f-string:\n`\"Me llamo Ana y tengo 25 años\"`",
+    "boilerplate": "nombre = \"Ana\"\nedad = 25\nmensaje = ___",
+    "testCode": "assert mensaje == 'Me llamo Ana y tengo 25 años', \"❌ Usa f\\\"Me llamo {nombre} y tengo {edad} años\\\"\"\nprint('✅ ¡Correcto! f-strings dominados')",
+    "pista": "```python\nmensaje = f\"Me llamo {nombre} y tengo {edad} años\"\n```\nLas variables van entre `{}`."
+  }
+]

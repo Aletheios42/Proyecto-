@@ -1,0 +1,82 @@
+[
+  {
+    "id": 901,
+    "titulo": "01_try_except.py",
+    "bloque": "09_excepciones",
+    "orden": 1,
+    "instrucciones": "# try/except\nDefine `dividir(a, b)` que:\n- Retorne `a/b` si `b != 0`\n- Retorne `\"Error: división por cero\"` si `b == 0`",
+    "boilerplate": "def dividir(a, b):\n    ___",
+    "testCode": "assert dividir(10, 2) == 5.0, \"❌ División normal\"\nassert dividir(9, 3) == 3.0, \"❌ División normal\"\nassert dividir(5, 0) == 'Error: división por cero', \"❌ Captura ZeroDivisionError\"\nprint('✅ ¡Correcto! try/except dominado')",
+    "pista": "```python\ntry:\n    return a / b\nexcept ZeroDivisionError:\n    return \"Error: división por cero\"\n```"
+  },
+  {
+    "id": 902,
+    "titulo": "02_multiples_except.py",
+    "bloque": "09_excepciones",
+    "orden": 2,
+    "instrucciones": "# Múltiples except\nDefine `convertir(valor)` que:\n- Retorne `int(valor)` si es posible\n- Retorne `\"no_numero\"` si lanza `ValueError`\n- Retorne `\"tipo_invalido\"` si lanza `TypeError`",
+    "boilerplate": "def convertir(valor):\n    ___",
+    "testCode": "assert convertir('42') == 42, \"❌ '42' convierte a 42\"\nassert convertir('abc') == 'no_numero', \"❌ ValueError\"\nassert convertir(None) == 'tipo_invalido', \"❌ TypeError\"\nprint('✅ ¡Correcto! Múltiples except dominados')",
+    "pista": "```python\ntry:\n    return int(valor)\nexcept ValueError:\n    return \"no_numero\"\nexcept TypeError:\n    return \"tipo_invalido\"\n```"
+  },
+  {
+    "id": 903,
+    "titulo": "03_else_try.py",
+    "bloque": "09_excepciones",
+    "orden": 3,
+    "instrucciones": "# else en try\nDefine `leer_indice(lista, i)` que acceda a `lista[i]`.\n- Si tiene éxito retorna el valor prefijado con `\"OK: \"`\n- Si hay `IndexError` retorna `\"fuera de rango\"`",
+    "boilerplate": "def leer_indice(lista, i):\n    try:\n        valor = lista[i]\n    except IndexError:\n        return ___\n    else:\n        return ___",
+    "testCode": "assert leer_indice([1,2,3], 1) == 'OK: 2', \"❌ Retorna 'OK: {valor}'\"\nassert leer_indice([1,2,3], 9) == 'fuera de rango', \"❌ Captura IndexError\"\nprint('✅ ¡Correcto! else en try dominado')",
+    "pista": "El bloque `else` se ejecuta solo si `try` no lanzó excepción."
+  },
+  {
+    "id": 904,
+    "titulo": "04_finally.py",
+    "bloque": "09_excepciones",
+    "orden": 4,
+    "instrucciones": "# finally\nDefine `operacion(a, b)` que divida `a/b`.\nUsa `finally` para añadir `\"[ejecutado]\"` al final del resultado siempre.\n- Éxito: retorna `\"resultado: 5.0 [ejecutado]\"`\n- Error: retorna `\"error [ejecutado]\"`",
+    "boilerplate": "def operacion(a, b):\n    try:\n        r = str(a / b)\n        msg = f\"resultado: {r}\"\n    except ZeroDivisionError:\n        msg = \"error\"\n    finally:\n        ___\n    return msg",
+    "testCode": "assert operacion(10, 2) == 'resultado: 5.0 [ejecutado]', \"❌ finally debe añadir el sufijo\"\nassert operacion(5, 0) == 'error [ejecutado]', \"❌ finally se ejecuta también en error\"\nprint('✅ ¡Correcto! finally dominado')",
+    "pista": "En `finally`: `msg += \" [ejecutado]\"`. Se ejecuta siempre, con o sin excepción."
+  },
+  {
+    "id": 905,
+    "titulo": "05_raise.py",
+    "bloque": "09_excepciones",
+    "orden": 5,
+    "instrucciones": "# raise\nDefine `validar_edad(edad)` que:\n- Retorne `\"Válido\"` si `0 <= edad <= 120`\n- Lance `ValueError(\"Edad fuera de rango\")` en caso contrario",
+    "boilerplate": "def validar_edad(edad):\n    ___",
+    "testCode": "assert validar_edad(25) == 'Válido', \"❌ 25 es válido\"\nassert validar_edad(0) == 'Válido', \"❌ 0 es válido\"\ntry:\n    validar_edad(-1)\n    assert False, \"❌ Debe lanzar ValueError\"\nexcept ValueError as e:\n    assert str(e) == 'Edad fuera de rango', \"❌ Mensaje incorrecto\"\nprint('✅ ¡Correcto! raise dominado')",
+    "pista": "```python\nif not (0 <= edad <= 120):\n    raise ValueError(\"Edad fuera de rango\")\nreturn \"Válido\"\n```"
+  },
+  {
+    "id": 906,
+    "titulo": "06_excepcion_personalizada.py",
+    "bloque": "09_excepciones",
+    "orden": 6,
+    "instrucciones": "# Excepción personalizada\nDefine `class SaldoInsuficienteError(Exception)`.\nDefine `retirar(saldo, cantidad)` que lance esa excepción si `cantidad > saldo`.",
+    "boilerplate": "class SaldoInsuficienteError(Exception):\n    ___\n\ndef retirar(saldo, cantidad):\n    ___",
+    "testCode": "assert retirar(100, 50) == 50, \"❌ Retorna saldo restante\"\ntry:\n    retirar(50, 100)\n    assert False, \"❌ Debe lanzar SaldoInsuficienteError\"\nexcept SaldoInsuficienteError:\n    pass\nprint('✅ ¡Correcto! Excepciones personalizadas dominadas')",
+    "pista": "```python\nclass SaldoInsuficienteError(Exception):\n    pass\n\ndef retirar(saldo, cantidad):\n    if cantidad > saldo:\n        raise SaldoInsuficienteError(\"Saldo insuficiente\")\n    return saldo - cantidad\n```"
+  },
+  {
+    "id": 907,
+    "titulo": "07_except_as.py",
+    "bloque": "09_excepciones",
+    "orden": 7,
+    "instrucciones": "# except ... as e\nDefine `parsear(texto)` que intente convertir a `int`.\nCaptura el `ValueError` con `as e` y retorna el mensaje del error como string.",
+    "boilerplate": "def parsear(texto):\n    try:\n        return int(texto)\n    except ValueError as e:\n        return ___",
+    "testCode": "assert parsear('42') == 42, \"❌ Conversión normal\"\nresultado = parsear('abc')\nassert isinstance(resultado, str), \"❌ Retorna el mensaje del error\"\nassert len(resultado) > 0, \"❌ El mensaje no puede estar vacío\"\nprint('✅ ¡Correcto! except as dominado')",
+    "pista": "`str(e)` convierte el objeto excepción a string con su mensaje."
+  },
+  {
+    "id": 908,
+    "titulo": "08_exception_generica.py",
+    "bloque": "09_excepciones",
+    "orden": 8,
+    "instrucciones": "# Exception genérica\nDefine `ejecutar_seguro(func, valor)` que aplique `func(valor)`.\nCaptura cualquier `Exception` y retorna `\"error_generico\"` si falla.",
+    "boilerplate": "def ejecutar_seguro(func, valor):\n    ___",
+    "testCode": "assert ejecutar_seguro(int, '42') == 42, \"❌ int('42') = 42\"\nassert ejecutar_seguro(int, 'abc') == 'error_generico', \"❌ Captura cualquier error\"\nassert ejecutar_seguro(lambda x: 1/x, 0) == 'error_generico', \"❌ ZeroDivisionError\"\nprint('✅ ¡Correcto! Exception genérica dominada')",
+    "pista": "`except Exception` captura cualquier error. Úsalo como último recurso, no como sustituto de excepciones específicas."
+  }
+]

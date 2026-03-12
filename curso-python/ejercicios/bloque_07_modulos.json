@@ -1,0 +1,82 @@
+[
+  {
+    "id": 701,
+    "titulo": "01_math.py",
+    "bloque": "07_modulos",
+    "orden": 1,
+    "instrucciones": "# Módulo math\nImporta `math` y calcula:\n- `raiz` = raíz cuadrada de 144\n- `pi_redondeado` = pi redondeado a 4 decimales\n- `fact` = factorial de 6 usando `math.factorial`",
+    "boilerplate": "import math\nraiz = ___\npi_redondeado = ___\nfact = ___",
+    "testCode": "assert raiz == 12.0, \"❌ math.sqrt(144) = 12.0\"\nassert pi_redondeado == 3.1416, \"❌ round(math.pi, 4)\"\nassert fact == 720, \"❌ math.factorial(6) = 720\"\nprint('✅ ¡Correcto! math dominado')",
+    "pista": "`math.sqrt()`, `math.pi`, `math.factorial()` son las funciones/constantes a usar."
+  },
+  {
+    "id": 702,
+    "titulo": "02_random.py",
+    "bloque": "07_modulos",
+    "orden": 2,
+    "instrucciones": "# Módulo random\nImporta solo `choice` y `randint` de `random`.\n- `dado` = número aleatorio entre 1 y 6\n- `fruta` = elemento aleatorio de `[\"manzana\", \"pera\", \"uva\"]`",
+    "boilerplate": "from random import ___\ndado = ___\nfruta = ___",
+    "testCode": "assert 1 <= dado <= 6, \"❌ dado debe estar entre 1 y 6\"\nassert fruta in ['manzana','pera','uva'], \"❌ fruta debe ser de la lista\"\nprint('✅ ¡Correcto! random dominado')",
+    "pista": "`randint(1, 6)` incluye ambos extremos. `choice(lista)` elige un elemento al azar."
+  },
+  {
+    "id": 703,
+    "titulo": "03_datetime.py",
+    "bloque": "07_modulos",
+    "orden": 3,
+    "instrucciones": "# Módulo datetime\nImporta `datetime` y calcula cuántos días han pasado desde el `1 de enero de 2020`.\nGuarda el resultado en `dias`.",
+    "boilerplate": "from datetime import datetime\nhoy = datetime.now()\nfecha_inicio = datetime(2020, 1, 1)\ndias = ___",
+    "testCode": "assert isinstance(dias, int), \"❌ dias debe ser un entero\"\nassert dias > 1000, \"❌ Han pasado más de 1000 días desde 2020\"\nprint('✅ ¡Correcto! datetime dominado')",
+    "pista": "`(hoy - fecha_inicio).days` calcula la diferencia en días entre dos fechas."
+  },
+  {
+    "id": 704,
+    "titulo": "04_collections_counter.py",
+    "bloque": "07_modulos",
+    "orden": 4,
+    "instrucciones": "# collections.Counter\nDado `texto = \"banana\"`, usa `Counter` para contar las letras.\nGuarda en `mas_comun` la letra más repetida.",
+    "boilerplate": "from collections import Counter\ntexto = \"banana\"\nconteo = Counter(___)\nmas_comun = ___",
+    "testCode": "assert conteo['a'] == 3, \"❌ 'a' aparece 3 veces en 'banana'\"\nassert mas_comun == 'a', \"❌ usa .most_common(1)[0][0]\"\nprint('✅ ¡Correcto! Counter dominado')",
+    "pista": "`Counter(texto)` cuenta caracteres. `.most_common(1)` devuelve el más frecuente como lista de tuplas."
+  },
+  {
+    "id": 705,
+    "titulo": "05_itertools.py",
+    "bloque": "07_modulos",
+    "orden": 5,
+    "instrucciones": "# itertools.combinations\nDada `letras = ['a','b','c']`, genera todas las combinaciones de 2 elementos.\nGuarda el resultado en `combis` como lista de tuples.",
+    "boilerplate": "from itertools import combinations\nletras = ['a','b','c']\ncombis = list(___)",
+    "testCode": "assert combis == [('a','b'),('a','c'),('b','c')], \"❌ combinations(letras, 2)\"\nprint('✅ ¡Correcto! itertools dominado')",
+    "pista": "`combinations(letras, 2)` genera pares sin repetición. Envuelve con `list()` para verlos."
+  },
+  {
+    "id": 706,
+    "titulo": "06_functools_reduce.py",
+    "bloque": "07_modulos",
+    "orden": 6,
+    "instrucciones": "# functools.reduce\nUsa `reduce` para calcular el producto de `[1,2,3,4,5]`.",
+    "boilerplate": "from functools import reduce\nnums = [1,2,3,4,5]\nproducto = reduce(___, nums)",
+    "testCode": "assert producto == 120, \"❌ 1*2*3*4*5 = 120\"\nprint('✅ ¡Correcto! reduce dominado')",
+    "pista": "`reduce(lambda a, b: a * b, nums)` aplica la función acumulativamente."
+  },
+  {
+    "id": 707,
+    "titulo": "07_alias_import.py",
+    "bloque": "07_modulos",
+    "orden": 7,
+    "instrucciones": "# Import con alias\nImporta `datetime` como `dt`.\nCrea `hoy` con la fecha actual usando el alias.",
+    "boilerplate": "import datetime as dt\nhoy = ___",
+    "testCode": "from datetime import datetime\nassert isinstance(hoy, datetime), \"❌ Usa dt.datetime.now()\"\nprint('✅ ¡Correcto! Alias de import dominado')",
+    "pista": "`hoy = dt.datetime.now()`. El alias sustituye el nombre del módulo."
+  },
+  {
+    "id": 708,
+    "titulo": "08_random_simulacion.py",
+    "bloque": "07_modulos",
+    "orden": 8,
+    "instrucciones": "# Simulación con random\nSimula 1000 lanzamientos de dado (1-6).\nGuarda en `frecuencias` un dict con cuántas veces salió cada número.",
+    "boilerplate": "import random\nfrecuencias = {i: 0 for i in range(1, 7)}\nfor _ in range(1000):\n    dado = ___\n    frecuencias[___] += 1",
+    "testCode": "assert sum(frecuencias.values()) == 1000, \"❌ Deben ser 1000 lanzamientos\"\nassert all(k in frecuencias for k in range(1,7)), \"❌ Deben estar los 6 valores\"\nprint('✅ ¡Correcto! Simulación dominada')",
+    "pista": "`random.randint(1, 6)` genera el lanzamiento. Incrementa `frecuencias[dado]`."
+  }
+]

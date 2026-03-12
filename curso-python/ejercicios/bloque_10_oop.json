@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1001,
+    "titulo": "01_clase_minima.py",
+    "bloque": "10_oop",
+    "orden": 1,
+    "instrucciones": "# Clase básica\nCrea la clase `Rectangulo` con:\n- Constructor: `ancho` y `alto`\n- Método `area()` → retorna ancho * alto\n- Método `perimetro()` → retorna 2 * (ancho + alto)",
+    "boilerplate": "class Rectangulo:\n    def __init__(self, ___):\n        ___\n    \n    def area(self):\n        ___\n    \n    def perimetro(self):\n        ___",
+    "testCode": "r = Rectangulo(4, 5)\nassert r.area() == 20, \"❌ area = ancho * alto\"\nassert r.perimetro() == 18, \"❌ perimetro = 2*(ancho+alto)\"\nr2 = Rectangulo(3, 3)\nassert r2.area() == 9, \"❌ Cuadrado: 3*3=9\"\nprint('✅ ¡Correcto! Clases dominadas')",
+    "pista": "```python\ndef __init__(self, ancho, alto):\n    self.ancho = ancho\n    self.alto = alto\n```\n`self` referencia al objeto actual."
+  },
+  {
+    "id": 1002,
+    "titulo": "02_str_repr.py",
+    "bloque": "10_oop",
+    "orden": 2,
+    "instrucciones": "# __str__ y __repr__\nAñade a `Punto(x, y)`:\n- `__str__` que retorne `\"Punto(x, y)\"`\n- `__repr__` que retorne `\"Punto(x=X, y=Y)\"`",
+    "boilerplate": "class Punto:\n    def __init__(self, x, y):\n        self.x = x\n        self.y = y\n    \n    def __str__(self):\n        ___\n    \n    def __repr__(self):\n        ___",
+    "testCode": "p = Punto(3, 4)\nassert str(p) == 'Punto(3, 4)', \"❌ __str__: 'Punto(x, y)'\"\nassert repr(p) == 'Punto(x=3, y=4)', \"❌ __repr__: 'Punto(x=X, y=Y)'\"\nprint('✅ ¡Correcto! __str__ y __repr__ dominados')",
+    "pista": "`__str__` es para humanos: `f\"Punto({self.x}, {self.y})\"`.\n`__repr__` es más técnico: `f\"Punto(x={self.x}, y={self.y})\"`."
+  },
+  {
+    "id": 1003,
+    "titulo": "03_atributo_clase.py",
+    "bloque": "10_oop",
+    "orden": 3,
+    "instrucciones": "# Atributo de clase\nCrea `Contador` con un atributo de clase `total = 0`.\nCada vez que se cree una instancia, `total` debe incrementarse en 1.",
+    "boilerplate": "class Contador:\n    total = 0\n    \n    def __init__(self):\n        ___",
+    "testCode": "a = Contador()\nassert Contador.total == 1, \"❌ Después de 1 instancia: total=1\"\nb = Contador()\nc = Contador()\nassert Contador.total == 3, \"❌ Después de 3 instancias: total=3\"\nprint('✅ ¡Correcto! Atributos de clase dominados')",
+    "pista": "En `__init__`: `Contador.total += 1`. Los atributos de clase son compartidos por todas las instancias."
+  },
+  {
+    "id": 1004,
+    "titulo": "04_herencia.py",
+    "bloque": "10_oop",
+    "orden": 4,
+    "instrucciones": "# Herencia\nCrea `Animal` con `nombre` y método `sonido()` que retorne `\"...\"`. \nCrea `Perro(Animal)` que sobreescriba `sonido()` retornando `\"Guau\"`.",
+    "boilerplate": "class Animal:\n    def __init__(self, nombre):\n        self.nombre = nombre\n    \n    def sonido(self):\n        return \"...\"\n\nclass Perro(___):\n    def sonido(self):\n        ___",
+    "testCode": "a = Animal('Genérico')\np = Perro('Rex')\nassert a.sonido() == '...', \"❌ Animal base retorna '...'\"\nassert p.sonido() == 'Guau', \"❌ Perro sobreescribe a 'Guau'\"\nassert p.nombre == 'Rex', \"❌ Hereda el atributo nombre\"\nprint('✅ ¡Correcto! Herencia dominada')",
+    "pista": "`class Perro(Animal):` hereda de Animal. Sobreescribir significa definir el mismo método en la subclase."
+  },
+  {
+    "id": 1005,
+    "titulo": "05_super.py",
+    "bloque": "10_oop",
+    "orden": 5,
+    "instrucciones": "# super()\nCrea `Vehiculo(marca)`. Crea `Coche(Vehiculo)` que además tenga `puertas`.\nUsa `super().__init__()` en `Coche`.",
+    "boilerplate": "class Vehiculo:\n    def __init__(self, marca):\n        self.marca = marca\n\nclass Coche(Vehiculo):\n    def __init__(self, marca, puertas):\n        ___\n        self.puertas = puertas",
+    "testCode": "c = Coche('Toyota', 4)\nassert c.marca == 'Toyota', \"❌ super().__init__ debe inicializar marca\"\nassert c.puertas == 4, \"❌ puertas debe ser 4\"\nprint('✅ ¡Correcto! super() dominado')",
+    "pista": "`super().__init__(marca)` llama al constructor del padre para inicializar `self.marca`."
+  },
+  {
+    "id": 1006,
+    "titulo": "06_polimorfismo.py",
+    "bloque": "10_oop",
+    "orden": 6,
+    "instrucciones": "# Polimorfismo\nCrea `Gato` y `Vaca` que hereden de `Animal` y sobreescriban `sonido()`.\nCrea `coro(animales)` que retorne lista con el sonido de cada animal.",
+    "boilerplate": "class Animal:\n    def sonido(self): return '...'\n\nclass Gato(Animal):\n    def sonido(self): ___\n\nclass Vaca(Animal):\n    def sonido(self): ___\n\ndef coro(animales):\n    ___",
+    "testCode": "animales = [Gato(), Vaca(), Gato()]\nresultado = coro(animales)\nassert resultado == ['Miau','Muuu','Miau'], \"❌ Cada animal emite su sonido\"\nprint('✅ ¡Correcto! Polimorfismo dominado')",
+    "pista": "`coro` puede ser: `return [a.sonido() for a in animales]`."
+  },
+  {
+    "id": 1007,
+    "titulo": "07_encapsulamiento.py",
+    "bloque": "10_oop",
+    "orden": 7,
+    "instrucciones": "# Encapsulamiento\nCrea `CuentaBancaria` con `__saldo` privado (empieza en 0).\nMétodo `depositar(cantidad)` suma al saldo.\nMétodo `obtener_saldo()` retorna el saldo.",
+    "boilerplate": "class CuentaBancaria:\n    def __init__(self):\n        self.__saldo = 0\n    \n    def depositar(self, cantidad):\n        ___\n    \n    def obtener_saldo(self):\n        ___",
+    "testCode": "c = CuentaBancaria()\nc.depositar(100)\nc.depositar(50)\nassert c.obtener_saldo() == 150, \"❌ 100+50=150\"\ntry:\n    _ = c.__saldo\n    assert False, \"❌ __saldo debe ser privado\"\nexcept AttributeError:\n    pass\nprint('✅ ¡Correcto! Encapsulamiento dominado')",
+    "pista": "`self.__saldo` con doble guión bajo es privado (name mangling). Solo accesible dentro de la clase."
+  },
+  {
+    "id": 1008,
+    "titulo": "08_property.py",
+    "bloque": "10_oop",
+    "orden": 8,
+    "instrucciones": "# @property\nCrea `Temperatura` con `_celsius`. Usa `@property` para `celsius` y un setter que valide que no sea menor a -273.15.",
+    "boilerplate": "class Temperatura:\n    def __init__(self, celsius):\n        self._celsius = celsius\n    \n    @property\n    def celsius(self):\n        ___\n    \n    @celsius.setter\n    def celsius(self, valor):\n        if valor < -273.15:\n            raise ValueError(\"Temperatura imposible\")\n        ___",
+    "testCode": "t = Temperatura(25)\nassert t.celsius == 25, \"❌ getter debe retornar _celsius\"\nt.celsius = 100\nassert t.celsius == 100, \"❌ setter debe actualizar _celsius\"\ntry:\n    t.celsius = -300\n    assert False, \"❌ Debe lanzar ValueError\"\nexcept ValueError:\n    pass\nprint('✅ ¡Correcto! @property dominado')",
+    "pista": "El getter retorna `self._celsius`. El setter asigna `self._celsius = valor`."
+  },
+  {
+    "id": 1009,
+    "titulo": "09_classmethod.py",
+    "bloque": "10_oop",
+    "orden": 9,
+    "instrucciones": "# @classmethod — factory method\nCrea `Fecha` con `dia`, `mes`, `anio`.\nAñade `@classmethod desde_string(cls, texto)` que parsee `\"DD/MM/AAAA\"`.",
+    "boilerplate": "class Fecha:\n    def __init__(self, dia, mes, anio):\n        self.dia = dia\n        self.mes = mes\n        self.anio = anio\n    \n    @classmethod\n    def desde_string(cls, texto):\n        ___",
+    "testCode": "f = Fecha.desde_string('25/12/2024')\nassert f.dia == 25, \"❌ dia debe ser 25\"\nassert f.mes == 12, \"❌ mes debe ser 12\"\nassert f.anio == 2024, \"❌ anio debe ser 2024\"\nprint('✅ ¡Correcto! @classmethod dominado')",
+    "pista": "```python\nd, m, a = texto.split('/')\nreturn cls(int(d), int(m), int(a))\n```"
+  },
+  {
+    "id": 1010,
+    "titulo": "10_staticmethod.py",
+    "bloque": "10_oop",
+    "orden": 10,
+    "instrucciones": "# @staticmethod\nAñade a `Matematica` un `@staticmethod es_primo(n)` que retorne `True` si `n` es primo.",
+    "boilerplate": "class Matematica:\n    @staticmethod\n    def es_primo(n):\n        ___",
+    "testCode": "assert Matematica.es_primo(2) == True, \"❌ 2 es primo\"\nassert Matematica.es_primo(7) == True, \"❌ 7 es primo\"\nassert Matematica.es_primo(4) == False, \"❌ 4 no es primo\"\nassert Matematica.es_primo(1) == False, \"❌ 1 no es primo\"\nprint('✅ ¡Correcto! @staticmethod dominado')",
+    "pista": "Un número es primo si solo es divisible por 1 y por sí mismo. Prueba divisores desde 2 hasta `n-1`."
+  },
+  {
+    "id": 1011,
+    "titulo": "11_dataclass.py",
+    "bloque": "10_oop",
+    "orden": 11,
+    "instrucciones": "# @dataclass\nReimplementa `Producto` usando `@dataclass` con campos `nombre` (str), `precio` (float), `stock` (int, default 0).",
+    "boilerplate": "from dataclasses import dataclass\n\n@dataclass\nclass Producto:\n    ___",
+    "testCode": "p = Producto('Manzana', 1.5)\nassert p.nombre == 'Manzana', \"❌ nombre='Manzana'\"\nassert p.precio == 1.5, \"❌ precio=1.5\"\nassert p.stock == 0, \"❌ stock default=0\"\np2 = Producto('Pan', 0.8, 10)\nassert p2.stock == 10, \"❌ stock puede especificarse\"\nprint('✅ ¡Correcto! @dataclass dominado')",
+    "pista": "```python\n@dataclass\nclass Producto:\n    nombre: str\n    precio: float\n    stock: int = 0\n```"
+  },
+  {
+    "id": 1012,
+    "titulo": "12_dunder_add.py",
+    "bloque": "10_oop",
+    "orden": 12,
+    "instrucciones": "# Métodos dunder\nAñade `__add__` a `Vector(x, y)` para que `v1 + v2` retorne un nuevo `Vector` con la suma componente a componente.",
+    "boilerplate": "class Vector:\n    def __init__(self, x, y):\n        self.x = x\n        self.y = y\n    \n    def __add__(self, otro):\n        ___",
+    "testCode": "v1 = Vector(1, 2)\nv2 = Vector(3, 4)\nv3 = v1 + v2\nassert v3.x == 4, \"❌ 1+3=4\"\nassert v3.y == 6, \"❌ 2+4=6\"\nprint('✅ ¡Correcto! __add__ dominado')",
+    "pista": "`return Vector(self.x + otro.x, self.y + otro.y)` crea un nuevo Vector con la suma."
+  }
+]
