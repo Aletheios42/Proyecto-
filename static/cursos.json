@@ -1,0 +1,18 @@
+[
+  {
+    "id": "python",
+    "titulo": "Curso de Python Interactivo",
+    "descripcion": "Aprende Python desde cero escribiendo y ejecutando código directamente en tu navegador.",
+    "ejercicios": 20,
+    "icon": "🐍",
+    "url": "curso-python/index.html"
+  },
+  {
+    "id": "proximamente",
+    "titulo": "SvelteKit para Principiantes",
+    "descripcion": "Próximamente. Construye aplicaciones web ultrarrápidas con el framework más amigable.",
+    "ejercicios": 0,
+    "icon": "🔥",
+    "url": "#"
+  }
+]

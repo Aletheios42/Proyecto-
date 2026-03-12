@@ -1,0 +1,62 @@
+[
+  {
+    "id": 801,
+    "titulo": "01_input_basico.py",
+    "bloque": "08_entrada_salida",
+    "orden": 1,
+    "instrucciones": "# Simular input()\nEn Pyodide no hay input real. Simula que el usuario escribió `\"Ana\"` asignándolo a `nombre`.\nLuego crea `saludo` con el formato `\"Hola, Ana!\"`.",
+    "boilerplate": "# Simula: nombre = input(\"¿Cómo te llamas? \")\nnombre = \"Ana\"\nsaludo = ___",
+    "testCode": "assert saludo == 'Hola, Ana!', \"❌ Formato: 'Hola, {nombre}!'\"\nprint('✅ ¡Correcto! Simulación de input dominada')",
+    "pista": "`saludo = f\"Hola, {nombre}!\"`"
+  },
+  {
+    "id": 802,
+    "titulo": "02_validar_input.py",
+    "bloque": "08_entrada_salida",
+    "orden": 2,
+    "instrucciones": "# Validar input numérico\nDefine `convertir_edad(texto)` que:\n- Retorne el entero si `texto` es un número válido\n- Retorne `\"Error: no es un número\"` si no lo es",
+    "boilerplate": "def convertir_edad(texto):\n    ___",
+    "testCode": "assert convertir_edad('25') == 25, \"❌ '25' debe convertirse a 25\"\nassert convertir_edad('abc') == 'Error: no es un número', \"❌ Captura ValueError\"\nprint('✅ ¡Correcto! Validación de input dominada')",
+    "pista": "```python\ntry:\n    return int(texto)\nexcept ValueError:\n    return \"Error: no es un número\"\n```"
+  },
+  {
+    "id": 803,
+    "titulo": "03_stringio_lectura.py",
+    "bloque": "08_entrada_salida",
+    "orden": 3,
+    "instrucciones": "# io.StringIO — lectura\nCrea un `StringIO` con el texto `\"línea1\\nlínea2\\nlínea3\"`.\nLee todas las líneas y guárdalas en `lineas` (lista de strings sin `\\n`).",
+    "boilerplate": "import io\nbuffer = io.StringIO(\"línea1\\nlínea2\\nlínea3\")\nlineas = ___",
+    "testCode": "assert lineas == ['línea1','línea2','línea3'], \"❌ Usa .read().splitlines() o .readlines()\"\nprint('✅ ¡Correcto! StringIO lectura dominada')",
+    "pista": "`buffer.read().splitlines()` lee todo y divide por líneas sin incluir `\\n`."
+  },
+  {
+    "id": 804,
+    "titulo": "04_stringio_escritura.py",
+    "bloque": "08_entrada_salida",
+    "orden": 4,
+    "instrucciones": "# io.StringIO — escritura\nCrea un `StringIO` vacío, escribe `\"Hola\\nMundo\"` en él.\nVuelve al inicio con `.seek(0)` y lee el contenido en `contenido`.",
+    "boilerplate": "import io\nbuffer = io.StringIO()\nbuffer.write(___)\nbuffer.seek(0)\ncontenido = buffer.read()",
+    "testCode": "assert contenido == 'Hola\\nMundo', \"❌ Escribe 'Hola\\\\nMundo'\"\nprint('✅ ¡Correcto! StringIO escritura dominada')",
+    "pista": "`.write()` escribe en el buffer. `.seek(0)` mueve el cursor al inicio para poder leer."
+  },
+  {
+    "id": 805,
+    "titulo": "05_csv_stringio.py",
+    "bloque": "08_entrada_salida",
+    "orden": 5,
+    "instrucciones": "# CSV en memoria\nParsea el CSV dado usando `csv.reader` sobre un `StringIO`.\nGuarda las filas en `filas` como lista de listas.",
+    "boilerplate": "import csv, io\ndatos_csv = \"nombre,edad\\nAna,25\\nLuis,30\"\nreader = csv.reader(io.StringIO(___))\nfilas = list(reader)",
+    "testCode": "assert filas[0] == ['nombre','edad'], \"❌ Primera fila: cabeceras\"\nassert filas[1] == ['Ana','25'], \"❌ Segunda fila: Ana,25\"\nassert len(filas) == 3, \"❌ Deben ser 3 filas\"\nprint('✅ ¡Correcto! CSV en memoria dominado')",
+    "pista": "`csv.reader(io.StringIO(datos_csv))` crea un lector CSV sobre el string."
+  },
+  {
+    "id": 806,
+    "titulo": "06_capturar_stdout.py",
+    "bloque": "08_entrada_salida",
+    "orden": 6,
+    "instrucciones": "# Capturar stdout\nRedirige `sys.stdout` a un `StringIO`, ejecuta `print('capturado')`, y guarda el output en `captura`.",
+    "boilerplate": "import sys, io\nsys.stdout = io.StringIO()\nprint('capturado')\ncaptura = sys.stdout.getvalue()\nsys.stdout = sys.__stdout__",
+    "testCode": "assert 'capturado' in captura, \"❌ El print debe capturarse en el StringIO\"\nprint('✅ ¡Correcto! Captura de stdout dominada')",
+    "pista": "Asigna `sys.stdout = io.StringIO()` antes del `print`. Luego `.getvalue()` recupera lo impreso."
+  }
+]

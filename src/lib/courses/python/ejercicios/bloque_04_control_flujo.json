@@ -1,0 +1,122 @@
+[
+  {
+    "id": 401,
+    "titulo": "01_if_simple.py",
+    "bloque": "04_control_flujo",
+    "orden": 1,
+    "instrucciones": "# if simple\nDado `numero = 7`, asigna a `resultado` el string `\"positivo\"` si es mayor que 0.",
+    "boilerplate": "numero = 7\nresultado = \"\"\nif ___:\n    resultado = ___",
+    "testCode": "assert resultado == 'positivo', \"❌ 7 > 0, resultado debe ser 'positivo'\"\nprint('✅ ¡Correcto! if simple dominado')",
+    "pista": "```python\nif numero > 0:\n    resultado = \"positivo\"\n```\nAtención a la indentación (4 espacios)."
+  },
+  {
+    "id": 402,
+    "titulo": "02_if_else.py",
+    "bloque": "04_control_flujo",
+    "orden": 2,
+    "instrucciones": "# if/else\nDado `numero = 4`, asigna a `paridad` el string `\"par\"` o `\"impar\"` según corresponda.",
+    "boilerplate": "numero = 4\nif ___:\n    paridad = ___\nelse:\n    paridad = ___",
+    "testCode": "assert paridad == 'par', \"❌ 4 es par (4 % 2 == 0)\"\nprint('✅ ¡Correcto! if/else dominado')",
+    "pista": "Un número es par si `numero % 2 == 0`."
+  },
+  {
+    "id": 403,
+    "titulo": "03_if_elif_else.py",
+    "bloque": "04_control_flujo",
+    "orden": 3,
+    "instrucciones": "# if/elif/else\nDado `temperatura = 35`, asigna a `estado`:\n- `\"calor\"` si > 30\n- `\"templado\"` si entre 15 y 30\n- `\"frio\"` si < 15",
+    "boilerplate": "temperatura = 35\nestado = ___",
+    "testCode": "assert estado == 'calor', \"❌ Con 35 grados el estado debe ser 'calor'\"\nprint('✅ ¡Correcto! Condicionales funcionando')",
+    "pista": "```python\nif temperatura > 30:\n    estado = \"calor\"\nelif temperatura >= 15:\n    estado = \"templado\"\nelse:\n    estado = \"frio\"\n```"
+  },
+  {
+    "id": 404,
+    "titulo": "04_for_lista.py",
+    "bloque": "04_control_flujo",
+    "orden": 4,
+    "instrucciones": "# for sobre lista\nDada `nombres = [\"Ana\", \"Luis\", \"Eva\"]`, usa `for` para construir `salidos` con cada nombre en mayúsculas.",
+    "boilerplate": "nombres = [\"Ana\", \"Luis\", \"Eva\"]\nsaludos = []\nfor ___:\n    saludos.append(___)",
+    "testCode": "assert saludos == ['ANA', 'LUIS', 'EVA'], \"❌ Usa .upper() en cada nombre\"\nprint('✅ ¡Correcto! for sobre lista dominado')",
+    "pista": "```python\nfor nombre in nombres:\n    saludos.append(nombre.upper())\n```"
+  },
+  {
+    "id": 405,
+    "titulo": "05_for_range.py",
+    "bloque": "04_control_flujo",
+    "orden": 5,
+    "instrucciones": "# for con range()\nUsa `for` con `range()` para calcular la suma de los primeros 10 múltiplos de 3 (3, 6, 9... 30).",
+    "boilerplate": "total = 0\nfor ___:\n    total += ___",
+    "testCode": "assert total == 165, \"❌ 3+6+9+...+30 = 165\"\nprint('✅ ¡Correcto! range() dominado')",
+    "pista": "Usa `range(3, 31, 3)` para generar 3, 6, 9... 30."
+  },
+  {
+    "id": 406,
+    "titulo": "06_while.py",
+    "bloque": "04_control_flujo",
+    "orden": 6,
+    "instrucciones": "# while\nUsando `while`, multiplica `contador` por 2 mientras sea menor a 100.\n`contador` empieza en 1.",
+    "boilerplate": "contador = 1\n# Tu bucle aquí\n___",
+    "testCode": "assert contador == 128, \"❌ 1→2→4→8→16→32→64→128\"\nprint('✅ ¡Correcto! while dominado')",
+    "pista": "```python\nwhile contador < 100:\n    contador *= 2\n```"
+  },
+  {
+    "id": 407,
+    "titulo": "07_break.py",
+    "bloque": "04_control_flujo",
+    "orden": 7,
+    "instrucciones": "# break\nBusca el primer número entre 1 y 50 divisible por 7 y guárdalo en `encontrado`. Usa `break` para detener el bucle.",
+    "boilerplate": "encontrado = None\nfor i in range(1, 51):\n    if ___:\n        encontrado = i\n        ___",
+    "testCode": "assert encontrado == 7, \"❌ El primer múltiplo de 7 en 1-50 es 7\"\nprint('✅ ¡Correcto! break dominado')",
+    "pista": "Condición: `i % 7 == 0`. Luego `break` para salir del bucle."
+  },
+  {
+    "id": 408,
+    "titulo": "08_continue.py",
+    "bloque": "04_control_flujo",
+    "orden": 8,
+    "instrucciones": "# continue\nCrea `no_multiplos` con los números del 1 al 20 que NO sean múltiplos de 3. Usa `continue`.",
+    "boilerplate": "no_multiplos = []\nfor i in range(1, 21):\n    if ___:\n        ___\n    no_multiplos.append(i)",
+    "testCode": "assert no_multiplos == [1,2,4,5,7,8,10,11,13,14,16,17,19,20], \"❌ Excluye múltiplos de 3\"\nprint('✅ ¡Correcto! continue dominado')",
+    "pista": "Si `i % 3 == 0`, usa `continue` para saltar al siguiente valor sin hacer `append`."
+  },
+  {
+    "id": 409,
+    "titulo": "09_for_else.py",
+    "bloque": "04_control_flujo",
+    "orden": 9,
+    "instrucciones": "# for/else\nBusca si el número `11` está en `numeros = [2, 5, 8, 14]`.\nSi no se encuentra, asigna `encontrado = False` en el `else` del for.",
+    "boilerplate": "numeros = [2, 5, 8, 14]\nencontrado = False\nfor n in numeros:\n    if n == 11:\n        encontrado = True\n        break\nelse:\n    ___",
+    "testCode": "assert encontrado == False, \"❌ 11 no está en la lista, else debe ejecutarse\"\nprint('✅ ¡Correcto! for/else dominado')",
+    "pista": "El bloque `else` del `for` se ejecuta solo si el bucle termina sin `break`."
+  },
+  {
+    "id": 410,
+    "titulo": "10_bucles_anidados.py",
+    "bloque": "04_control_flujo",
+    "orden": 10,
+    "instrucciones": "# Bucles anidados\nGenera `tabla` como lista de strings con la tabla del 2: `[\"2x1=2\", \"2x2=4\", ..., \"2x5=10\"]`.",
+    "boilerplate": "tabla = []\nfor i in ___:\n    tabla.append(___)",
+    "testCode": "assert tabla == ['2x1=2','2x2=4','2x3=6','2x4=8','2x5=10'], \"❌ Formato: '2x1=2'\"\nprint('✅ ¡Correcto! Bucles dominados')",
+    "pista": "```python\nfor i in range(1, 6):\n    tabla.append(f\"2x{i}={2*i}\")\n```"
+  },
+  {
+    "id": 411,
+    "titulo": "11_enumerate.py",
+    "bloque": "04_control_flujo",
+    "orden": 11,
+    "instrucciones": "# enumerate()\nDada `frutas = [\"manzana\", \"pera\", \"uva\"]`, crea `indexadas` como lista de strings:\n`[\"0: manzana\", \"1: pera\", \"2: uva\"]`",
+    "boilerplate": "frutas = [\"manzana\", \"pera\", \"uva\"]\nindexadas = []\nfor ___:\n    indexadas.append(___)",
+    "testCode": "assert indexadas == ['0: manzana', '1: pera', '2: uva'], \"❌ Formato: 'indice: fruta'\"\nprint('✅ ¡Correcto! enumerate() dominado')",
+    "pista": "```python\nfor i, fruta in enumerate(frutas):\n    indexadas.append(f\"{i}: {fruta}\")\n```"
+  },
+  {
+    "id": 412,
+    "titulo": "12_zip.py",
+    "bloque": "04_control_flujo",
+    "orden": 12,
+    "instrucciones": "# zip()\nDadas `nombres = [\"Ana\", \"Luis\"]` y `edades = [25, 30]`,\ncrea `pares` como lista de tuples: `[(\"Ana\", 25), (\"Luis\", 30)]`",
+    "boilerplate": "nombres = [\"Ana\", \"Luis\"]\nedades = [25, 30]\npares = []\nfor ___:\n    pares.append(___)",
+    "testCode": "assert pares == [('Ana', 25), ('Luis', 30)], \"❌ Usa zip(nombres, edades)\"\nprint('✅ ¡Correcto! zip() dominado')",
+    "pista": "```python\nfor nombre, edad in zip(nombres, edades):\n    pares.append((nombre, edad))\n```"
+  }
+]

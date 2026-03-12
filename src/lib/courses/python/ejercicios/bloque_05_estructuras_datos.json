@@ -1,0 +1,132 @@
+[
+  {
+    "id": 501,
+    "titulo": "01_listas_basico.py",
+    "bloque": "05_estructuras_datos",
+    "orden": 1,
+    "instrucciones": "# Listas\nDada `frutas = [\"manzana\", \"pera\", \"uva\"]`:\n- Añade `\"mango\"` al final\n- Elimina `\"pera\"`\n- Guarda la longitud final en `total`",
+    "boilerplate": "frutas = [\"manzana\", \"pera\", \"uva\"]\n# Modifica la lista\n___\ntotal = ___",
+    "testCode": "assert 'mango' in frutas, \"❌ Usa .append()\"\nassert 'pera' not in frutas, \"❌ Usa .remove()\"\nassert total == 3, \"❌ Deben quedar 3 frutas\"\nprint('✅ ¡Correcto! Listas dominadas')",
+    "pista": "```python\nfrutas.append(\"mango\")\nfrutas.remove(\"pera\")\ntotal = len(frutas)\n```"
+  },
+  {
+    "id": 502,
+    "titulo": "02_slicing.py",
+    "bloque": "05_estructuras_datos",
+    "orden": 2,
+    "instrucciones": "# Slicing\nDada `nums = [0,1,2,3,4,5,6,7,8,9]`:\n- `primeros` = primeros 3 elementos\n- `ultimos` = últimos 3 elementos\n- `inversa` = lista completa invertida",
+    "boilerplate": "nums = [0,1,2,3,4,5,6,7,8,9]\nprimeros = ___\nultimos = ___\ninversa = ___",
+    "testCode": "assert primeros == [0,1,2], \"❌ nums[:3]\"\nassert ultimos == [7,8,9], \"❌ nums[-3:]\"\nassert inversa == [9,8,7,6,5,4,3,2,1,0], \"❌ nums[::-1]\"\nprint('✅ ¡Correcto! Slicing dominado')",
+    "pista": "`[:3]` primeros 3. `[-3:]` últimos 3. `[::-1]` invierte con paso -1."
+  },
+  {
+    "id": 503,
+    "titulo": "03_metodos_lista.py",
+    "bloque": "05_estructuras_datos",
+    "orden": 3,
+    "instrucciones": "# Métodos de lista\nDada `numeros = [3,1,4,1,5,9,2,6]`:\n- `ordenada` = lista ordenada (sin modificar original)\n- `maximo` = valor máximo\n- `cuenta_unos` = cuántos 1 hay",
+    "boilerplate": "numeros = [3,1,4,1,5,9,2,6]\nordenada = ___\nmaximo = ___\ncuenta_unos = ___",
+    "testCode": "assert ordenada == [1,1,2,3,4,5,6,9], \"❌ Usa sorted()\"\nassert maximo == 9, \"❌ Usa max()\"\nassert cuenta_unos == 2, \"❌ Usa .count()\"\nprint('✅ ¡Correcto! Métodos de lista dominados')",
+    "pista": "`sorted(lista)` no modifica la original. `max()` y `.count()` son funciones/métodos."
+  },
+  {
+    "id": 504,
+    "titulo": "04_lista_listas.py",
+    "bloque": "05_estructuras_datos",
+    "orden": 4,
+    "instrucciones": "# Lista de listas (matriz)\nCrea `matriz` de 2x3: `[[1,2,3],[4,5,6]]`.\nAccede al elemento `6` y guárdalo en `elemento`.",
+    "boilerplate": "matriz = ___\nelemento = ___",
+    "testCode": "assert matriz == [[1,2,3],[4,5,6]], \"❌ Matriz 2x3 correcta\"\nassert elemento == 6, \"❌ Fila 1, columna 2: matriz[1][2]\"\nprint('✅ ¡Correcto! Matrices dominadas')",
+    "pista": "`matriz[1][2]` accede a la fila 1 (segunda), columna 2 (tercera). Índices empiezan en 0."
+  },
+  {
+    "id": 505,
+    "titulo": "05_tuplas.py",
+    "bloque": "05_estructuras_datos",
+    "orden": 5,
+    "instrucciones": "# Tuplas\nCrea `coordenadas = (10, 20, 30)`.\nDesempaqueta en `x`, `y`, `z`.\nVerifica que no puedes modificarla capturando el error en `modificable`.",
+    "boilerplate": "coordenadas = (10, 20, 30)\nx, y, z = ___\ntry:\n    coordenadas[0] = 99\n    modificable = True\nexcept TypeError:\n    modificable = False",
+    "testCode": "assert x == 10 and y == 20 and z == 30, \"❌ Desempaqueta correctamente\"\nassert modificable == False, \"❌ Las tuplas son inmutables\"\nprint('✅ ¡Correcto! Tuplas dominadas')",
+    "pista": "`x, y, z = coordenadas` desempaqueta los 3 valores. Las tuplas son inmutables: no se pueden modificar."
+  },
+  {
+    "id": 506,
+    "titulo": "06_tupla_un_elemento.py",
+    "bloque": "05_estructuras_datos",
+    "orden": 6,
+    "instrucciones": "# Tupla de un elemento\nCrea `solo_uno` como tupla con un solo elemento: el número `42`.\nGuarda en `es_tupla` si es instancia de `tuple`.",
+    "boilerplate": "solo_uno = ___\nes_tupla = ___",
+    "testCode": "assert solo_uno == (42,), \"❌ Una tupla de un elemento necesita coma: (42,)\"\nassert es_tupla == True, \"❌ Debe ser una tupla\"\nprint('✅ ¡Correcto! La coma hace la tupla')",
+    "pista": "`(42)` es simplemente el número 42 entre paréntesis. `(42,)` con la coma sí es una tupla."
+  },
+  {
+    "id": 507,
+    "titulo": "07_dicts_basico.py",
+    "bloque": "05_estructuras_datos",
+    "orden": 7,
+    "instrucciones": "# Diccionarios\nCrea `persona` con claves: `nombre` (string), `edad` (int), `ciudad` (string).\nLuego añade la clave `activo` con valor `True`.",
+    "boilerplate": "persona = ___\n# Añade 'activo'\n___",
+    "testCode": "assert isinstance(persona, dict), \"❌ persona debe ser un dict\"\nassert 'nombre' in persona, \"❌ Falta clave 'nombre'\"\nassert 'edad' in persona, \"❌ Falta clave 'edad'\"\nassert 'ciudad' in persona, \"❌ Falta clave 'ciudad'\"\nassert persona.get('activo') == True, \"❌ Falta clave 'activo': True\"\nprint('✅ ¡Correcto! Diccionarios dominados')",
+    "pista": "```python\npersona = {\"nombre\": \"Ana\", \"edad\": 25, \"ciudad\": \"Madrid\"}\npersona[\"activo\"] = True\n```"
+  },
+  {
+    "id": 508,
+    "titulo": "08_dict_metodos.py",
+    "bloque": "05_estructuras_datos",
+    "orden": 8,
+    "instrucciones": "# Métodos de diccionario\nDado `datos = {\"nombre\": \"Ana\", \"edad\": 28}`:\n- `nombre` = valor de `\"nombre\"`\n- `telefono` = valor de `\"telefono\"`, o `\"N/A\"` si no existe",
+    "boilerplate": "datos = {\"nombre\": \"Ana\", \"edad\": 28}\nnombre = ___\ntelefono = ___",
+    "testCode": "assert nombre == 'Ana', \"❌ Accede con datos['nombre']\"\nassert telefono == 'N/A', \"❌ Usa .get() con valor por defecto\"\nprint('✅ ¡Correcto! Métodos de dict dominados')",
+    "pista": "`datos[\"nombre\"]` acceso directo. `datos.get(\"telefono\", \"N/A\")` devuelve `\"N/A\"` si la clave no existe."
+  },
+  {
+    "id": 509,
+    "titulo": "09_dict_iteracion.py",
+    "bloque": "05_estructuras_datos",
+    "orden": 9,
+    "instrucciones": "# Iteración de diccionarios\nDado `precios`, crea `total` sumando todos los valores.\nCrea `productos` con la lista de todas las claves.",
+    "boilerplate": "precios = {\"manzana\": 1.5, \"pan\": 0.8, \"leche\": 1.2}\ntotal = ___\nproductos = ___",
+    "testCode": "assert round(total, 1) == 3.5, \"❌ Suma todos los valores\"\nassert sorted(productos) == ['leche', 'manzana', 'pan'], \"❌ Usa .keys()\"\nprint('✅ ¡Correcto! Iteración de dicts dominada')",
+    "pista": "`sum(precios.values())` suma todos los valores. `list(precios.keys())` obtiene las claves."
+  },
+  {
+    "id": 510,
+    "titulo": "10_dict_anidado.py",
+    "bloque": "05_estructuras_datos",
+    "orden": 10,
+    "instrucciones": "# Diccionario anidado\nCrea `empresa` con clave `\"empleados\"` que contenga una lista con un dict `{\"nombre\": \"Ana\", \"rol\": \"dev\"}`.\nAccede al nombre del primer empleado y guárdalo en `primer_nombre`.",
+    "boilerplate": "empresa = ___\nprimer_nombre = ___",
+    "testCode": "assert empresa['empleados'][0]['nombre'] == 'Ana', \"❌ Estructura incorrecta\"\nassert primer_nombre == 'Ana', \"❌ empresa['empleados'][0]['nombre']\"\nprint('✅ ¡Correcto! Dicts anidados dominados')",
+    "pista": "```python\nempresa = {\"empleados\": [{\"nombre\": \"Ana\", \"rol\": \"dev\"}]}\nprimer_nombre = empresa[\"empleados\"][0][\"nombre\"]\n```"
+  },
+  {
+    "id": 511,
+    "titulo": "11_sets.py",
+    "bloque": "05_estructuras_datos",
+    "orden": 11,
+    "instrucciones": "# Sets\nDados `a = {1,2,3,4}` y `b = {3,4,5,6}`:\n- `union` = todos los elementos de ambos\n- `interseccion` = elementos comunes\n- `diferencia` = elementos en `a` pero no en `b`",
+    "boilerplate": "a = {1,2,3,4}\nb = {3,4,5,6}\nunion = ___\ninterseccion = ___\ndiferencia = ___",
+    "testCode": "assert union == {1,2,3,4,5,6}, \"❌ Usa a | b o a.union(b)\"\nassert interseccion == {3,4}, \"❌ Usa a & b o a.intersection(b)\"\nassert diferencia == {1,2}, \"❌ Usa a - b o a.difference(b)\"\nprint('✅ ¡Correcto! Sets dominados')",
+    "pista": "`a | b` unión, `a & b` intersección, `a - b` diferencia. O usa los métodos `.union()`, `.intersection()`, `.difference()`."
+  },
+  {
+    "id": 512,
+    "titulo": "12_eliminar_duplicados.py",
+    "bloque": "05_estructuras_datos",
+    "orden": 12,
+    "instrucciones": "# Eliminar duplicados\nDada `lista = [1,2,2,3,3,3,4]`, crea `sin_duplicados` como lista sin repeticiones (orden no importa).",
+    "boilerplate": "lista = [1,2,2,3,3,3,4]\nsin_duplicados = ___",
+    "testCode": "assert sorted(sin_duplicados) == [1,2,3,4], \"❌ Convierte a set y de vuelta a list\"\nassert isinstance(sin_duplicados, list), \"❌ Debe ser una lista\"\nprint('✅ ¡Correcto! Duplicados eliminados')",
+    "pista": "`list(set(lista))` convierte a set (elimina duplicados) y de vuelta a lista."
+  },
+  {
+    "id": 513,
+    "titulo": "13_range.py",
+    "bloque": "05_estructuras_datos",
+    "orden": 13,
+    "instrucciones": "# range()\n- `pares` = lista de pares del 0 al 20 inclusive\n- `invertido` = lista [10, 8, 6, 4, 2]",
+    "boilerplate": "pares = list(___)\ninvertido = list(___)",
+    "testCode": "assert pares == [0,2,4,6,8,10,12,14,16,18,20], \"❌ range(0, 21, 2)\"\nassert invertido == [10,8,6,4,2], \"❌ range(10, 1, -2)\"\nprint('✅ ¡Correcto! range() dominado')",
+    "pista": "`range(inicio, fin, paso)`. Para invertir, usa paso negativo: `range(10, 1, -2)`."
+  }
+]

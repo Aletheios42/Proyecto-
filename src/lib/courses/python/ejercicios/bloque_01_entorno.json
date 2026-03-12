@@ -1,0 +1,52 @@
+[
+  {
+    "id": 101,
+    "titulo": "01_hola_mundo.py",
+    "bloque": "01_entorno",
+    "orden": 1,
+    "instrucciones": "# Hola Mundo\nUsa `print()` para imprimir exactamente: `Hola, mundo!`",
+    "boilerplate": "# Imprime Hola, mundo!\n___",
+    "testCode": "import sys, io\noutput = sys.stdout.getvalue()\nassert 'Hola, mundo!' in output, \"❌ Imprime exactamente 'Hola, mundo!'\"\nprint('✅ ¡Correcto! Bienvenido a Python')",
+    "pista": "Usa `print('Hola, mundo!')`. Los strings van entre comillas simples o dobles."
+  },
+  {
+    "id": 102,
+    "titulo": "02_expresion_repl.py",
+    "bloque": "01_entorno",
+    "orden": 2,
+    "instrucciones": "# Expresiones\nAsigna a `resultado` el valor de `2 + 2` e imprímelo.",
+    "boilerplate": "resultado = ___\nprint(resultado)",
+    "testCode": "assert resultado == 4, \"❌ 2 + 2 debe ser 4\"\nprint('✅ ¡Correcto!')",
+    "pista": "Simplemente escribe `resultado = 2 + 2`. Python evalúa la expresión automáticamente."
+  },
+  {
+    "id": 103,
+    "titulo": "03_comentarios.py",
+    "bloque": "01_entorno",
+    "orden": 3,
+    "instrucciones": "# Comentarios\nEscribe un comentario con `#` en la primera línea.\nLuego imprime tu nombre en la segunda.",
+    "boilerplate": "# ___\nprint(___)",
+    "testCode": "import sys\noutput = sys.stdout.getvalue()\nassert len(output.strip()) > 0, \"❌ Debes imprimir algo\"\nprint('✅ ¡Correcto! Los comentarios documentan tu código')",
+    "pista": "Los comentarios empiezan con `#` y Python los ignora. Ejemplo: `# Esto es un comentario`"
+  },
+  {
+    "id": 104,
+    "titulo": "04_multiples_prints.py",
+    "bloque": "01_entorno",
+    "orden": 4,
+    "instrucciones": "# Múltiples prints\nImprime en líneas separadas:\n- Tu nombre\n- Tu edad como número\n- La ciudad 'Madrid'",
+    "boilerplate": "print(___)\nprint(___)\nprint(___)",
+    "testCode": "import sys\nlines = [l for l in sys.stdout.getvalue().strip().split('\\n') if l]\nassert len(lines) >= 3, \"❌ Necesitas exactamente 3 prints\"\nprint('✅ ¡Correcto! Múltiples prints funcionando')",
+    "pista": "Cada `print()` genera una línea nueva. Strings entre comillas, números sin comillas."
+  },
+  {
+    "id": 105,
+    "titulo": "05_errores_sintaxis.py",
+    "bloque": "01_entorno",
+    "orden": 5,
+    "instrucciones": "# Leer errores\nEste código tiene un bug. Corrígelo para que imprima `Python funciona`.",
+    "boilerplate": "print('Python funciona'",
+    "testCode": "import sys\noutput = sys.stdout.getvalue()\nassert 'Python funciona' in output, \"❌ El print debe imprimir 'Python funciona'\"\nprint('✅ ¡Correcto! Aprender a leer errores es clave')",
+    "pista": "Fíjate en los paréntesis: todo `print(` necesita su `)` de cierre."
+  }
+]
