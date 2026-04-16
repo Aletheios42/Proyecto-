@@ -1,49 +1,64 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <title> ProyectoÑ </title>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/theme/dracula.min.css">
-        <link rel="stylesheet" href="style.css">
-    </head>
-
-    <body>
-        <div id="app">
-            <div id="panel-lateral">
-                <h3> Archivos </h3>
-                <div class="archivo-item chuleta-btn" onclick="mostrarChuleta()">
-                    💡 Abrir Chuleta
-                </div>
-                <div id="lista-ejercicios"></div>
-            </div>
-
-            <div id="modal-chuleta" class="modal">
-                <div class="modal-contenido">
-                    <span class="cerrar-modal">&times;</span>
-                    <div id="contenido-markdown"></div>
-                </div>
-            </div>
-
-            <div id="panel-editor">
-                <div id="instrucciones-contenedor">
-                    <h2 id="ejercicio-titulo">Seleciona un ejercicio</h2>
-                    <h2 id="ejercicio-enunciado"> Las instrucciones aparecerán aquí </h2>
-                    <button id="boton-pista">Pista</button>
-                </div>
-                <textarea id="codigo"></textarea>
-                <button id="boton-verificar" disabled>Cargando Python</button>
-            </div>
-
-            <div id="panel-terminal">
-                <p> Terminal Activa </p>
-            </div>
+  <head>
+    <title> ProyectoÑ </title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/theme/dracula.min.css">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div id="app">
+      <div id="panel-lateral">
+        <div class="header-sidebar">
+          <h3>Proyecto Ñ</h3>
+          <div class="examen-toggle-container">
+            <span>MODO EXAMEN</span>
+            <label class="switch">
+              <input type="checkbox" id="examen-slider" onclick="handleExamenToggle(this)">
+              <span class="slider round"></span>
+            </label>
+          </div>
         </div>
 
-        <script src="https://cdn.jsdelivr.net/pyodide/v0.25.1/full/pyodide.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/python/python.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-        <script src="app.js"></script>
-    </body>
+        <div class="archivo-item chuleta-btn" onclick="mostrarChuleta()">
+          💡 Abrir Chuleta
+        </div>
+
+        <div id="lista-ejercicios"></div>
+
+        <div id="zona-abandono" style="display: none; padding-top: 20px;">
+          <div class="archivo-item abandonar-btn" onclick="abandonarExamen()">
+            ❌ Abandonar Examen
+          </div>
+        </div>
+      </div>
+
+      <div id="panel-editor">
+        <div id="instrucciones-contenedor">
+          <h2 id="ejercicio-titulo">Selecciona un ejercicio</h2>
+          <div id="ejercicio-enunciado">Las instrucciones aparecerán aquí</div>
+          <button id="boton-pista">Pista</button>
+        </div>
+        <textarea id="codigo"></textarea>
+        <button id="boton-verificar" disabled>Cargando Python</button>
+      </div>
+
+      <div id="panel-terminal">
+        <p> Terminal Activa </p>
+      </div>
+    </div>
+
+    <div id="modal-chuleta" class="modal">
+      <div class="modal-contenido">
+        <span class="cerrar-modal">&times;</span>
+        <div id="contenido-markdown"></div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.25.1/full/pyodide.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/python/python.min.js"></script>
+    <script src="app.js"></script>
+  </body>
 </html>

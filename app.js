@@ -1,164 +1,210 @@
 let pyodide;
-let ejercicioActualIndex = 0;
-let bloqueAbierto = "01_entorno";
 let editor;
 let EJERCICIOS = [];
+let ejercicioActualIndex = 0;
+let bloqueAbierto = "01_entorno";
 
-const botonVerificar = document.getElementById("boton-verificar");
-const terminal = document.getElementById("panel-terminal");
+// Estado de Examen
+let examenState = {
+    activo: false,
+    indiceActual: 0,
+    idsSeleccionados: []
+};
 
 const BLOQUES = [
-  { id: "01_entorno",           nombre: "01 · Entorno" },
-  { id: "02_tipos_variables",   nombre: "02 · Tipos y Variables" },
-  { id: "03_operadores",        nombre: "03 · Operadores" },
-  { id: "04_control_flujo",     nombre: "04 · Control de Flujo" },
-  { id: "05_estructuras_datos", nombre: "05 · Estructuras de Datos" },
-  { id: "06_funciones",         nombre: "06 · Funciones" },
-  { id: "07_modulos",           nombre: "07 · Módulos" },
-  { id: "08_entrada_salida",    nombre: "08 · Entrada / Salida" },
-  { id: "09_excepciones",       nombre: "09 · Excepciones" },
-  { id: "10_oop",               nombre: "10 · OOP" },
-  { id: "11_comprensiones",     nombre: "11 · Comprensiones" },
+    { id: "01_entorno", nombre: "01 · Entorno" },
+    { id: "02_tipos_variables", nombre: "02 · Variables" },
+    { id: "03_operadores", nombre: "03 · Operadores" },
+    { id: "04_control_flujo", nombre: "04 · Control Flujo" },
+    { id: "05_estructuras_datos", nombre: "05 · Estructuras" },
+    { id: "06_funciones", nombre: "06 · Funciones" },
+    { id: "07_modulos", nombre: "07 · Módulos" },
+    { id: "08_entrada_salida", nombre: "08 · E/S" },
+    { id: "09_excepciones", nombre: "09 · Excepciones" },
+    { id: "10_oop", nombre: "10 · OOP" },
+    { id: "11_comprensiones", nombre: "11 · Comprensiones" }
 ];
 
 async function cargarEjercicios() {
-  const promesas = BLOQUES.map(b =>
-    fetch(`ejercicios/bloque_${b.id}.json`)
-      .then(r => {
-        if (!r.ok) throw new Error(`404: bloque_${b.id}.json`);
-        return r.json();
-      })
-      .catch(err => { console.error(err); return []; })
-  );
-  const resultados = await Promise.all(promesas);
-  EJERCICIOS = resultados.flat();
-  console.log("Ejercicios cargados:", EJERCICIOS.length);
+    const promesas = BLOQUES.map(b =>
+        fetch(`ejercicios/bloque_${b.id}.json`).then(r => r.json()).catch(() => [])
+    );
+    const resultados = await Promise.all(promesas);
+    EJERCICIOS = resultados.flat();
 }
 
 async function main() {
-  editor = CodeMirror.fromTextArea(document.getElementById("codigo"), {
-    lineNumbers: true,
-    theme: "dracula",
-    mode: "python"
-  });
+    // 1. UI Setup
+    editor = CodeMirror.fromTextArea(document.getElementById("codigo"), {
+        lineNumbers: true,
+        theme: "dracula",
+        mode: "python"
+    });
 
-  terminal.innerHTML = "<p>⏳ Cargando ejercicios...</p>";
-  await cargarEjercicios();
+    // 2. Cargar Datos
+    await cargarEjercicios();
 
-  terminal.innerHTML = "<p>⏳ Cargando Python...</p>";
-  pyodide = await loadPyodide();
+    // 3. Persistencia de Examen
+    const saved = localStorage.getItem("examen_data");
+    if (saved) {
+        examenState = JSON.parse(saved);
+        if (examenState.activo) {
+            document.body.classList.add("en-examen");
+            document.getElementById("examen-slider").checked = true;
+            document.getElementById("examen-slider").disabled = true;
+            document.getElementById("zona-abandono").style.display = "block";
+        }
+    }
 
-  botonVerificar.disabled = false;
-  botonVerificar.innerText = "Verificar Código";
-  terminal.innerHTML = "<p style='color: #00ff00;'>✅ Python listo para ejecutar.</p>";
+    // 4. Pyodide
+    document.getElementById("panel-terminal").innerHTML = "<p>⏳ Cargando Python...</p>";
+    pyodide = await loadPyodide();
+    document.getElementById("boton-verificar").disabled = false;
+    document.getElementById("boton-verificar").innerText = "Verificar Código";
+    document.getElementById("panel-terminal").innerHTML = "<p>✅ Listo.</p>";
 
-  renderizarListaEjercicios();
-  cargarEjercicio(0);
+    // 5. Inicializar vista
+    if (examenState.activo) {
+        cargarEjercicioExamen();
+    } else {
+        renderizarListaEjercicios();
+        cargarEjercicio(0);
+    }
+}
+
+// --- LÓGICA DE EXAMEN ---
+
+function handleExamenToggle(slider) {
+    if (slider.checked) {
+        if (confirm("¿Activar MODO EXAMEN? Se elegirá un ejercicio al azar de cada bloque y no podrás volver atrás hasta terminar.")) {
+            iniciarExamen();
+        } else {
+            slider.checked = false;
+        }
+    }
+}
+
+function iniciarExamen() {
+    const seleccion = [];
+    BLOQUES.forEach(b => {
+        const opciones = EJERCICIOS.filter(e => e.bloque === b.id);
+        if (opciones.length) {
+            const azar = opciones[Math.floor(Math.random() * opciones.length)];
+            seleccion.push(azar.id);
+        }
+    });
+
+    examenState = { activo: true, indiceActual: 0, idsSeleccionados: seleccion };
+    localStorage.setItem("examen_data", JSON.stringify(examenState));
+    
+    document.body.classList.add("en-examen");
+    document.getElementById("examen-slider").disabled = true;
+    document.getElementById("zona-abandono").style.display = "block";
+    
+    cargarEjercicioExamen();
+}
+
+function cargarEjercicioExamen() {
+    const id = examenState.idsSeleccionados[examenState.indiceActual];
+    const ejer = EJERCICIOS.find(e => e.id === id);
+    
+    document.getElementById("ejercicio-titulo").innerText = `EXAMEN: Pregunta ${examenState.indiceActual + 1} de 11`;
+    document.getElementById("ejercicio-enunciado").innerText = ejer.instrucciones;
+    editor.setValue(ejer.boilerplate);
+    renderizarListaEjercicios();
 }
 
 function renderizarListaEjercicios() {
-  const contenedor = document.getElementById("lista-ejercicios");
-  contenedor.innerHTML = '';
+    const contenedor = document.getElementById("lista-ejercicios");
+    contenedor.innerHTML = '';
 
-  BLOQUES.forEach(bloque => {
-    const ejerciciosDelBloque = EJERCICIOS.filter(e => e.bloque === bloque.id);
-    const estaAbierto = bloqueAbierto === bloque.id;
+    if (examenState.activo) {
+        examenState.idsSeleccionados.forEach((id, i) => {
+            const item = document.createElement("div");
+            item.className = "archivo-item";
+            
+            if (i === examenState.indiceActual) {
+                item.classList.add("activo");
+                item.innerHTML = `🎯 Actual: Pregunta ${i+1}`;
+            } else if (i < examenState.indiceActual) {
+                item.innerHTML = `✅ Pregunta ${i+1} (Hecha)`;
+            } else {
+                item.classList.add("bloqueado");
+                item.innerHTML = `🔒 Pregunta ${i+1} (Bloqueada)`;
+            }
+            contenedor.appendChild(item);
+        });
+    } else {
+        BLOQUES.forEach(b => {
+            const lista = EJERCICIOS.filter(e => e.bloque === b.id);
+            const header = document.createElement("div");
+            header.className = "bloque-header " + (bloqueAbierto === b.id ? "abierto" : "");
+            header.innerText = b.nombre;
+            header.onclick = () => { bloqueAbierto = b.id; renderizarListaEjercicios(); };
+            contenedor.appendChild(header);
 
-    const header = document.createElement("div");
-    header.className = "bloque-header" + (estaAbierto ? " abierto" : "");
-    header.innerHTML = `<span class="bloque-arrow">${estaAbierto ? "▾" : "▸"}</span> ${bloque.nombre}`;
-    header.onclick = () => {
-      bloqueAbierto = estaAbierto ? null : bloque.id;
-      renderizarListaEjercicios();
-    };
-    contenedor.appendChild(header);
-
-    if (estaAbierto) {
-      ejerciciosDelBloque.forEach(ejer => {
-        const index = EJERCICIOS.indexOf(ejer);
-        const resuelto = localStorage.getItem(`ejercicio_${ejer.id}`) === "resuelto";
-
-        const item = document.createElement("div");
-        item.className = "archivo-item" + (index === ejercicioActualIndex ? " activo" : "");
-        item.innerHTML = `${resuelto ? "✅" : "📄"} ${ejer.titulo}`;
-        item.onclick = () => {
-          ejercicioActualIndex = index;
-          cargarEjercicio(index);
-          renderizarListaEjercicios();
-        };
-        contenedor.appendChild(item);
-      });
+            if (bloqueAbierto === b.id) {
+                lista.forEach(e => {
+                    const idx = EJERCICIOS.indexOf(e);
+                    const item = document.createElement("div");
+                    item.className = "archivo-item " + (idx === ejercicioActualIndex ? "activo" : "");
+                    item.innerText = e.titulo;
+                    item.onclick = () => { ejercicioActualIndex = idx; cargarEjercicio(idx); renderizarListaEjercicios(); };
+                    contenedor.appendChild(item);
+                });
+            }
+        });
     }
-  });
 }
 
 function cargarEjercicio(index) {
-  const ejer = EJERCICIOS[index];
-  document.getElementById("ejercicio-titulo").innerText = ejer.titulo;
-  document.getElementById("ejercicio-enunciado").innerText = ejer.instrucciones;
-  editor.setValue(ejer.boilerplate);
+    ejercicioActualIndex = index;
+    const ejer = EJERCICIOS[index];
+    document.getElementById("ejercicio-titulo").innerText = ejer.titulo;
+    document.getElementById("ejercicio-enunciado").innerText = ejer.instrucciones;
+    editor.setValue(ejer.boilerplate);
 }
 
-async function runCode(codigoAlumno, testCode) {
-  terminal.innerHTML = "<p style='color: #aaa;'>Ejecutando...</p>";
-  try {
-    await pyodide.runPythonAsync(`
-      import sys, io
-      sys.stdout = io.StringIO()
-    `);
-    const fullCode = codigoAlumno + "\n" + testCode;
-    await pyodide.runPythonAsync(fullCode);
-    const stdout = await pyodide.runPythonAsync("sys.stdout.getvalue()");
-    terminal.innerHTML = `<pre>${stdout}</pre>`;
-    marcarComoResuelto();
-  } catch (err) {
-    manejarError(err);
-  }
-}
+// --- VERIFICACIÓN ---
 
-function manejarError(err) {
-  const errorMsg = err.message;
-  if (errorMsg.includes("AssertionError")) {
-    const cleanError = errorMsg.split("AssertionError:").pop().split("\n")[0];
-    terminal.innerHTML = `<p style="color: #ff4444;">❌ ${cleanError}</p>`;
-  } else {
-    terminal.innerHTML = `<p style="color: #ffaa00;">⚠️ Error de Python:</p><pre style="color: #ffaa00;">${errorMsg}</pre>`;
-  }
-}
+document.getElementById("boton-verificar").onclick = async () => {
+    const terminal = document.getElementById("panel-terminal");
+    const ejer = examenState.activo 
+        ? EJERCICIOS.find(e => e.id === examenState.idsSeleccionados[examenState.indiceActual])
+        : EJERCICIOS[ejercicioActualIndex];
 
-function marcarComoResuelto() {
-  const ejerActual = EJERCICIOS[ejercicioActualIndex];
-  localStorage.setItem(`ejercicio_${ejerActual.id}`, "resuelto");
-  terminal.innerHTML += `<p style="color: #00ff00;">⭐ ¡Reto superado!</p>`;
-  renderizarListaEjercicios();
-}
+    terminal.innerHTML = "<p>⏳ Verificando...</p>";
 
-botonVerificar.addEventListener('click', () => {
-  const codigo = editor.getValue();
-  const test = EJERCICIOS[ejercicioActualIndex].testCode;
-  runCode(codigo, test);
-});
-
-document.getElementById("boton-pista").addEventListener('click', () => {
-  const pista = EJERCICIOS[ejercicioActualIndex].pista;
-  terminal.innerHTML = `<pre style="color: #f1fa8c;">💡 Pista:\n${pista}</pre>`;
-});
-
-document.addEventListener('keydown', (evento) => {
-  if (evento.key === 'Escape') {
-    document.getElementById("modal-chuleta").style.display = 'none';
-  }
-});
-
-async function mostrarChuleta() {
-  const respuesta = await fetch('chuleta.md');
-  const texto = await respuesta.text();
-  document.getElementById('contenido-markdown').innerHTML = marked.parse(texto);
-  document.getElementById('modal-chuleta').style.display = 'block';
-}
-
-document.querySelector('.cerrar-modal').onclick = () => {
-  document.getElementById('modal-chuleta').style.display = 'none';
+    try {
+        await pyodide.runPythonAsync(`import sys, io\nsys.stdout = io.StringIO()`);
+        await pyodide.runPythonAsync(editor.getValue() + "\n" + ejer.testCode);
+        terminal.innerHTML = `<p style="color: #50fa7b;">✅ ¡Correcto!</p>`;
+        
+        if (examenState.activo) {
+            examenState.indiceActual++;
+            if (examenState.indiceActual >= 11) {
+                alert("¡EXAMEN COMPLETADO! Felicidades.");
+                abandonarExamen();
+            } else {
+                localStorage.setItem("examen_data", JSON.stringify(examenState));
+                setTimeout(cargarEjercicioExamen, 1000);
+            }
+        } else {
+            localStorage.setItem(`ejercicio_${ejer.id}`, "resuelto");
+            renderizarListaEjercicios();
+        }
+    } catch (err) {
+        terminal.innerHTML = `<p style="color: #ff5555;">❌ Error:\n${err.message}</p>`;
+    }
 };
+
+function abandonarExamen() {
+    localStorage.removeItem("examen_data");
+    location.reload();
+}
+
+function mostrarChuleta() {
+    window.open('Python_Cheat_Sheet.pdf', '_blank');
+}
 
 main();
